@@ -46,11 +46,82 @@ void TestCase138()
     node4.random = node3;
     node5.random = node1;
     printNode(node1);
-    var copiedNode = new Solution().CopyRandomList(node1);
+    var copiedNode = new Solution138().CopyRandomList(node1);
     Console.WriteLine("--------------------------------------");
     printNode(copiedNode);
 }
+
+TestCase138();  // just run the test immediately
 #endregion
 
-TestCase138();
+#region test case 2414
+void TestCase2414()
+{
+    var sln = new Solution2414();
+    var result1 = sln.LongestContinuousSubstring("abacaba");
+    var result2 = sln.LongestContinuousSubstring("abcde");
+    if (result1 != 2 || result2 != 5)
+    {
+        throw new Exception("test case 2414 failed");
+    }
+    else
+    {
+        Console.WriteLine("test case 2414 passed");
+    }
+}
+TestCase2414(); // just run the test immediately
+#endregion
+
+#region test case 92
+
+void TestCase92()
+{
+    var sln = new Solution92();
+    Func<int[], ListNode> createList = (arr) =>
+    {
+        ListNode head = new ListNode(arr[0]);
+        ListNode cur = head;
+        for (int i = 1; i < arr.Length; i++)
+        {
+            cur.next = new ListNode(arr[i]);
+            cur = cur.next;
+        }
+        return head;
+    };
+    Func<ListNode, string> listNodeToString = (head) =>
+    {
+        List<int> values = new List<int>();
+        while (head != null)
+        {
+            values.Add(head.val);
+            head = head.next;
+        }
+        return $"[{string.Join(",", values)}]";
+    };
+    var result1 = sln.ReverseBetween(createList([1, 2, 3, 4, 5]), 2, 4);
+    if (listNodeToString(result1) != "[1,4,3,2,5]")
+    {
+        throw new Exception("test case 92 failed");
+    }
+    var result2 = sln.ReverseBetween(createList([5]), 1, 1);
+    if (listNodeToString(result2) != "[5]")
+    {
+        throw new Exception("test case 92 failed");
+    }
+    var result3 = sln.ReverseBetween(createList([5, 6, 7]), 1, 2);
+    if (listNodeToString(result3) != "[6,5,7]")
+    {
+        throw new Exception("test case 92 failed");
+    }
+    var result4 = sln.ReverseBetween(createList([7, 8, 9]), 2, 3);
+    if (listNodeToString(result4) != "[7,9,8]")
+    {
+        throw new Exception("test case 92 failed");
+    }
+    Console.WriteLine("test case 92 passed");
+}
+
+TestCase92();
+#endregion
+
 

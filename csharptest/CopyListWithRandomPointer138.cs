@@ -18,7 +18,7 @@ public class Node
 }
 
 
-public class Solution
+public class Solution138
 {
     public Node? CopyRandomList(Node head)
     {
