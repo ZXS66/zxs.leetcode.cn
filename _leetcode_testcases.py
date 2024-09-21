@@ -16,6 +16,7 @@ from valid_anagram_242 import Solution as Solution_242
 from word_pattern_290 import Solution as Solution_290
 from ransom_note_383 import Solution as Solution_383
 from distance_between_bus_stops_1184 import Solution as Solution_1184
+from node_with_highest_edge_score_2374 import Solution as Solution_2374
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
 
 
@@ -255,6 +256,16 @@ class Leetcode_testcases(unittest.TestCase):
                 start=tc.input["start"],
                 destination=tc.input["destination"],
             )
+            self.assertEqual(tc.output, output)
+
+    def test_case_2374(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input=[1,0,0,0,0,7,7,5], output=7),
+            LeetcodeTestCase(input=[2,0,0,2], output=0),
+        ]
+        sln = Solution_2374()
+        for tc in testcases:
+            output = sln.edgeScore(tc.input)
             self.assertEqual(tc.output, output)
 
     def test_case_2848(self):

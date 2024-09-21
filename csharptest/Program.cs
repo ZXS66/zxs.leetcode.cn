@@ -4,6 +4,33 @@ using System.Text;
 Console.WriteLine("########################################");
 Console.WriteLine("running test cases...");
 
+#region handy functions
+
+Func<int[], ListNode> createList = (arr) =>
+{
+    ListNode head = new ListNode(arr[0]);
+    ListNode cur = head;
+    for (int i = 1; i < arr.Length; i++)
+    {
+        cur.next = new ListNode(arr[i]);
+        cur = cur.next;
+    }
+    return head;
+};
+Func<ListNode, string> listNodeToString = (head) =>
+{
+    List<int> values = new List<int>();
+    while (head != null)
+    {
+        values.Add(head.val);
+        head = head.next;
+    }
+    return $"[{string.Join(",", values)}]";
+};
+#endregion
+
+
+
 #region test case 138
 void TestCase138()
 {
@@ -51,7 +78,7 @@ void TestCase138()
     printNode(copiedNode);
 }
 
-TestCase138();  // just run the test immediately
+//TestCase138();  // just run the test immediately
 #endregion
 
 #region test case 2414
@@ -69,7 +96,7 @@ void TestCase2414()
         Console.WriteLine("test case 2414 passed");
     }
 }
-TestCase2414(); // just run the test immediately
+// TestCase2414(); // just run the test immediately
 #endregion
 
 #region test case 92
@@ -77,27 +104,6 @@ TestCase2414(); // just run the test immediately
 void TestCase92()
 {
     var sln = new Solution92();
-    Func<int[], ListNode> createList = (arr) =>
-    {
-        ListNode head = new ListNode(arr[0]);
-        ListNode cur = head;
-        for (int i = 1; i < arr.Length; i++)
-        {
-            cur.next = new ListNode(arr[i]);
-            cur = cur.next;
-        }
-        return head;
-    };
-    Func<ListNode, string> listNodeToString = (head) =>
-    {
-        List<int> values = new List<int>();
-        while (head != null)
-        {
-            values.Add(head.val);
-            head = head.next;
-        }
-        return $"[{string.Join(",", values)}]";
-    };
     var result1 = sln.ReverseBetween(createList([1, 2, 3, 4, 5]), 2, 4);
     if (listNodeToString(result1) != "[1,4,3,2,5]")
     {
@@ -121,7 +127,93 @@ void TestCase92()
     Console.WriteLine("test case 92 passed");
 }
 
-TestCase92();
+//TestCase92();
 #endregion
+
+
+#region test case 25
+
+void TestCase25()
+{
+    var sln = new Solution25();
+    var result1 = sln.ReverseKGroup(createList([1, 2, 3, 4, 5]), 2);
+    if (listNodeToString(result1) != "[2,1,4,3,5]")
+    {
+        throw new Exception("test case 25 failed");
+    }
+    var result2 = sln.ReverseKGroup(createList([1, 2, 3, 4, 5]), 3);
+    if (listNodeToString(result2) != "[3,2,1,4,5]")
+    {
+        throw new Exception("test case 25 failed");
+    }
+    var result3 = sln.ReverseKGroup(createList([1, 2]), 2);
+    if (listNodeToString(result3) != "[2,1]")
+    {
+        throw new Exception("test case 25 failed");
+    }
+    Console.WriteLine("test case 25 passed");
+}
+
+// TestCase25();
+#endregion
+
+#region test case 19
+void TestCase19()
+{
+    var sln = new Solution19();
+    var result1=sln.RemoveNthFromEnd(createList([1, 2, 3, 4, 5]), 2);
+    if (listNodeToString(result1) != "[1,2,3,5]")
+    {
+        throw new Exception("test case 19 failed");
+    }
+    var result2=sln.RemoveNthFromEnd(createList([1]), 1);
+    if (listNodeToString(result2) != "[]")
+    {
+        throw new Exception("test case 19 failed");
+    }
+    var result3 = sln.RemoveNthFromEnd(createList([1, 2]), 1);
+    if (listNodeToString(result3) != "[1]")
+    {
+        throw new Exception("test case 19 failed");
+    }
+    var result4 = sln.RemoveNthFromEnd(createList([1, 2]), 2);
+    if (listNodeToString(result4) != "[2]")
+    {
+        throw new Exception("test case 19 failed");
+    }
+    Console.WriteLine("test case 19 passed");
+}
+
+// TestCase19();
+
+#endregion
+
+#region test case 82
+
+void TestCase82()
+{
+    var sln = new Solution82();
+    var result1 = sln.DeleteDuplicates(createList([1,2,3,3,4,4,5]));
+    if (listNodeToString(result1) != "[1,2,5]")
+    {
+        throw new Exception("test case 82 failed");
+    }
+    var result2 = sln.DeleteDuplicates(createList([1,1,1,2,3]));
+    if (listNodeToString(result2) != "[2,3]")
+    {
+        throw new Exception("test case 82 failed");
+    }
+    var result3 = sln.DeleteDuplicates(createList([1,1]));
+    if (listNodeToString(result3) != "[]")
+    {
+        throw new Exception("test case 82 failed");
+    }
+    Console.WriteLine("test case 82 passed");
+}
+TestCase82();
+#endregion
+
+
+
 
 

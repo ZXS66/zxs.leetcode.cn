@@ -1,23 +1,5 @@
 // https://leetcode.cn/problems/copy-list-with-random-pointer/?envType=study-plan-v2&envId=top-interview-150
 
-/// <summary>
-/// Definition for a Node.
-/// </summary>
-public class Node
-{
-    public int val;
-    public Node? next;
-    public Node? random;
-
-    public Node(int _val)
-    {
-        val = _val;
-        next = null;
-        random = null;
-    }
-}
-
-
 public class Solution138
 {
     public Node? CopyRandomList(Node head)
