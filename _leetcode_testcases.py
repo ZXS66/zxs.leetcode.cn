@@ -1,20 +1,32 @@
 import unittest
+import json
 from dataclasses import dataclass
 from min_stack_155 import MinStack
 
 from two_sum_1 import Solution as Solution_1
+from roman_to_integer_13 import Solution as Solution_13
+from longest_common_prefix_14 import Solution as Solution_14
 from valid_parentheses_20 import Solution as Solution_20
+from find_the_index_of_the_first_occurrence_in_a_string_28 import (
+    Solution as Solution_28,
+)
 from group_anagrams_49 import Solution as Solution_49
+from length_of_last_word_58 import Solution as Solution_58
 from simplify_path_71 import Solution as Solution_71
+from best_time_to_buy_and_sell_stock_121 import Solution as Solution_121
+from valid_palindrome_125 import Solution as Solution_125
 from longest_consecutive_sequence_128 import Solution as Solution_128
 from evaluate_reverse_polish_notation_150 import Solution as Solution_150
+from majority_element_169 import Solution as Solution_169
 from happy_number_202 import Solution as Solution_202
 from isomorphic_strings_205 import Solution as Solution_205
 from contains_duplicate_ii_219 import Solution as Solution_219
 from basic_calculator_224 import Solution as Solution_224
+from summary_ranges_228 import Solution as Solution_228
 from valid_anagram_242 import Solution as Solution_242
 from word_pattern_290 import Solution as Solution_290
 from ransom_note_383 import Solution as Solution_383
+from is_subsequence_392 import Solution as Solution_392
 from distance_between_bus_stops_1184 import Solution as Solution_1184
 from node_with_highest_edge_score_2374 import Solution as Solution_2374
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
@@ -41,6 +53,29 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.twoSum(tc.input["nums"], tc.input["target"])
             self.assertEqual(str(tc.output), str(output))
 
+    def test_case_13(self):
+        testcases = [
+            LeetcodeTestCase(input="III", output=3),
+            LeetcodeTestCase(input="IV", output=4),
+            LeetcodeTestCase(input="IX", output=9),
+            LeetcodeTestCase(input="LV", output=55),
+            LeetcodeTestCase(input="LVIII", output=58),
+            LeetcodeTestCase(input="MCMXCIV", output=1994),
+        ]
+        sln = Solution_13()
+        for tc in testcases:
+            output = sln.romanToInt(tc.input)
+            self.assertEqual(tc.output, output)
+
+    def test_case_14(self):
+        testcases = [
+            LeetcodeTestCase(input=["flower", "flow", "flight"], output="fl"),
+            LeetcodeTestCase(input=["dog", "racecar", "car"], output=""),
+            LeetcodeTestCase(input=["a"], output="a"),
+            LeetcodeTestCase(input=[""], output=""),
+        ]
+        sln = Solution_14()
+
     def test_case_20(self):
         testcases = [
             LeetcodeTestCase(input="()", output=True),
@@ -53,6 +88,20 @@ class Leetcode_testcases(unittest.TestCase):
         sln = Solution_20()
         for tc in testcases:
             output = sln.isValid(tc.input)
+            self.assertEqual(tc.output, output)
+
+    def test_case_28(self):
+        testcases = [
+            LeetcodeTestCase(
+                input={"haystack": "sadbutsad", "needle": "sad"}, output=0
+            ),
+            LeetcodeTestCase(
+                input={"haystack": "leetcode", "needle": "leeto"}, output=-1
+            ),
+        ]
+        sln = Solution_28()
+        for tc in testcases:
+            output = sln.strStr(tc.input["haystack"], tc.input["needle"])
             self.assertEqual(tc.output, output)
 
     def test_case_49(self):
@@ -69,6 +118,17 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.groupAnagrams(tc.input)
             # self.assertEqual(str(tc.output), str(output))
 
+    def test_case_58(self):
+        testcases = [
+            LeetcodeTestCase(input="Hello World", output=5),
+            LeetcodeTestCase(input="   fly me   to   the moon  ", output=4),
+            LeetcodeTestCase(input="luffy is still joyboy", output=6),
+        ]
+        sln = Solution_58()
+        for tc in testcases:
+            output = sln.lengthOfLastWord(tc.input)
+            self.assertEqual(tc.output, output)
+
     def test_case_71(self):
         testcases = [
             LeetcodeTestCase(input="/home/", output="/home"),
@@ -82,6 +142,29 @@ class Leetcode_testcases(unittest.TestCase):
         sln = Solution_71()
         for tc in testcases:
             output = sln.simplifyPath(tc.input)
+            self.assertEqual(tc.output, output)
+
+    def test_case_121(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input=[7, 1, 5, 3, 6, 4], output=5),
+            LeetcodeTestCase(input=[7, 6, 4, 3, 1], output=0),
+            LeetcodeTestCase(input=[2, 4, 1], output=2),
+        ]
+        sln = Solution_121()
+        for tc in testcases:
+            output = sln.maxProfit(tc.input)
+            self.assertEqual(tc.output, output)
+
+    def test_case_125(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input="A man, a plan, a canal: Panama", output=True),
+            LeetcodeTestCase(input="race a car", output=False),
+            LeetcodeTestCase(input=" ", output=True),
+            LeetcodeTestCase(input="0P", output=False),
+        ]
+        sln = Solution_125()
+        for tc in testcases:
+            output = sln.isPalindrome(tc.input)
             self.assertEqual(tc.output, output)
 
     def test_case_128(self):
@@ -134,6 +217,16 @@ class Leetcode_testcases(unittest.TestCase):
         self.assertEqual(minStack.top(), 0)  # 返回 0.
         self.assertEqual(minStack.getMin(), -2)  # 返回 -2.
 
+    def test_case_169(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input=[3, 2, 3], output=3),
+            LeetcodeTestCase(input=[2, 2, 1, 1, 1, 2, 2], output=2),
+        ]
+        sln = Solution_169()
+        for tc in testcases:
+            output = sln.majorityElement(tc.input)
+            self.assertEqual(tc.output, output)
+
     def test_case_202(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input=19, output=True),
@@ -182,6 +275,19 @@ class Leetcode_testcases(unittest.TestCase):
         sln = Solution_224()
         for tc in testcases:
             output = sln.calculate(tc.input)
+            self.assertEqual(tc.output, output)
+
+    def test_case_228(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input=[0, 1, 2, 4, 5, 7], output=r'["0->2", "4->5", "7"]'),
+            LeetcodeTestCase(
+                input=[0, 2, 3, 4, 6, 8, 9], output='["0", "2->4", "6", "8->9"]'
+            ),
+        ]
+        sln = Solution_228()
+        for tc in testcases:
+            output = sln.summaryRanges(tc.input)
+            output = json.dumps(output)
             self.assertEqual(tc.output, output)
 
     def test_case_242(self):
@@ -234,6 +340,19 @@ class Leetcode_testcases(unittest.TestCase):
             )
             self.assertEqual(tc.output, output)
 
+    def test_case_392(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"s": "abc", "t": "ahbgdc"}, output=True),
+            LeetcodeTestCase(input={"s": "axc", "t": "ahbgdc"}, output=False),
+        ]
+        sln = Solution_392()
+        for tc in testcases:
+            output = sln.isSubsequence(
+                s=tc.input["s"],
+                t=tc.input["t"],
+            )
+            self.assertEqual(tc.output, output)
+
     def test_case_1184(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(
@@ -260,8 +379,8 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_2374(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input=[1,0,0,0,0,7,7,5], output=7),
-            LeetcodeTestCase(input=[2,0,0,2], output=0),
+            LeetcodeTestCase(input=[1, 0, 0, 0, 0, 7, 7, 5], output=7),
+            LeetcodeTestCase(input=[2, 0, 0, 2], output=0),
         ]
         sln = Solution_2374()
         for tc in testcases:
