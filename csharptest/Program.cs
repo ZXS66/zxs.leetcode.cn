@@ -161,12 +161,12 @@ void TestCase25()
 void TestCase19()
 {
     var sln = new Solution19();
-    var result1=sln.RemoveNthFromEnd(createList([1, 2, 3, 4, 5]), 2);
+    var result1 = sln.RemoveNthFromEnd(createList([1, 2, 3, 4, 5]), 2);
     if (listNodeToString(result1) != "[1,2,3,5]")
     {
         throw new Exception("test case 19 failed");
     }
-    var result2=sln.RemoveNthFromEnd(createList([1]), 1);
+    var result2 = sln.RemoveNthFromEnd(createList([1]), 1);
     if (listNodeToString(result2) != "[]")
     {
         throw new Exception("test case 19 failed");
@@ -193,27 +193,146 @@ void TestCase19()
 void TestCase82()
 {
     var sln = new Solution82();
-    var result1 = sln.DeleteDuplicates(createList([1,2,3,3,4,4,5]));
+    var result1 = sln.DeleteDuplicates(createList([1, 2, 3, 3, 4, 4, 5]));
     if (listNodeToString(result1) != "[1,2,5]")
     {
         throw new Exception("test case 82 failed");
     }
-    var result2 = sln.DeleteDuplicates(createList([1,1,1,2,3]));
+    var result2 = sln.DeleteDuplicates(createList([1, 1, 1, 2, 3]));
     if (listNodeToString(result2) != "[2,3]")
     {
         throw new Exception("test case 82 failed");
     }
-    var result3 = sln.DeleteDuplicates(createList([1,1]));
+    var result3 = sln.DeleteDuplicates(createList([1, 1]));
     if (listNodeToString(result3) != "[]")
     {
         throw new Exception("test case 82 failed");
     }
     Console.WriteLine("test case 82 passed");
 }
-TestCase82();
+// TestCase82();
 #endregion
 
 
+#region test case 997
+
+void TestCase997()
+{
+    var sln = new Solution997();
+    var result1 = sln.FindJudge(2, [[1, 2]]);
+    if (result1 != 2)
+    {
+        throw new Exception("test case 997 failed");
+    }
+    var result2 = sln.FindJudge(3, [[1, 3], [2, 3]]);
+    if (result2 != 3)
+    {
+        throw new Exception("test case 997 failed");
+    }
+    var result3 = sln.FindJudge(3, [[1, 3], [2, 3], [3, 1]]);
+    if (result3 != -1)
+    {
+        throw new Exception("test case 997 failed");
+    }
+    var result4 = sln.FindJudge(1, []);
+    if (result4 != 1)
+    {
+        throw new Exception("test case 997 failed");
+    }
+    Console.WriteLine("test case 997 passed");
+}
+
+// TestCase997();
+
+#endregion
+
+
+
+#region  test case 61
+
+void TestCase61()
+{
+    var sln = new Solution61();
+    var result1 = sln.RotateRight(createList([1, 2, 3, 4, 5]), 2);
+    if (listNodeToString(result1) != "[4,5,1,2,3]")
+    {
+        throw new Exception("test case 61 failed");
+    }
+    var result2 = sln.RotateRight(createList([0, 1, 2]), 4);
+    if (listNodeToString(result2) != "[2,0,1]")
+    {
+        throw new Exception("test case 61 failed");
+    }
+    Console.WriteLine("test case 61 passed");
+}
+
+// TestCase61();
+
+#endregion
+
+
+#region test case 86
+
+void TestCase86()
+{
+    var sln = new Solution86();
+    var result1 = sln.Partition(createList([1, 4, 3, 2, 5, 2]), 3);
+    if (listNodeToString(result1) != "[1,2,2,4,3,5]")
+    {
+        throw new Exception("test case 86 failed");
+    }
+    var result2 = sln.Partition(createList([2, 1]), 2);
+    if (listNodeToString(result2) != "[1,2]")
+    {
+        throw new Exception("test case 86 failed");
+    }
+    Console.WriteLine("test case 86 passed");
+}
+// TestCase86();
+#endregion
+
+
+#region test case 146
+void TestCase146()
+{    
+    LRUCache lRUCache = new LRUCache(2);
+    lRUCache.Put(1, 1); // 缓存是 {1=1}
+    lRUCache.Put(2, 2); // 缓存是 {1=1, 2=2}
+    var result1 = lRUCache.Get(1);    // 返回 1
+    if (result1 != 1)
+    {
+        throw new Exception("test case 146 failed");
+    }
+    lRUCache.Put(3, 3); // 该操作会使得关键字 2 作废，缓存是 {1=1, 3=3}
+    var result2 = lRUCache.Get(2);    // 返回 -1 (未找到)
+    if (result2 != -1)
+    {
+        throw new Exception("test case 146 failed");
+    }
+    lRUCache.Put(4, 4); // 该操作会使得关键字 1 作废，缓存是 {4=4, 3=3}
+    var result3 = lRUCache.Get(1);    // 返回 -1 (未找到)
+    var result4 = lRUCache.Get(3);    // 返回 3
+    var result5 = lRUCache.Get(4);    // 返回 4
+    if (result3 != -1 || result4 != 3 || result5 != 4)
+    {
+        throw new Exception("test case 146 failed");
+    }
+    LRUCache lRUCache2 = new LRUCache(2);
+    lRUCache2.Put(2, 1);
+    lRUCache2.Put(1, 1);
+    lRUCache2.Put(2,3);
+    lRUCache2.Put(4,1);
+    var result6= lRUCache2.Get(1);
+    var result7 = lRUCache2.Get(2);
+    if (result6 != -1 || result7 != 3)
+    {
+        throw new Exception("test case 146 failed");
+    }
+    
+    Console.WriteLine("test case 146 passed");
+}
+TestCase146();
+#endregion
 
 
 
