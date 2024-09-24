@@ -27,6 +27,40 @@ Func<ListNode, string> listNodeToString = (head) =>
     }
     return $"[{string.Join(",", values)}]";
 };
+
+Func<int?[], TreeNode> createTree = (arr) =>
+{
+    if (arr == null || arr.Length == 0)
+    {
+        return null;
+    }
+    int n = arr.Length;
+    IDictionary<int, TreeNode> dict = new Dictionary<int, TreeNode>();
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i].HasValue)
+        {
+            dict[i] = new TreeNode(arr[i].Value);
+        }
+    }
+    // the second for loop can be optimized
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i].HasValue)
+        {
+            int left = 2 * i + 1, right = 2 * i + 2;
+            if (left < n && arr[left].HasValue)
+            {
+                dict[i].left = dict[left];
+            }
+            if (right < n && arr[right].HasValue)
+            {
+                dict[i].right = dict[right];
+            }
+        }
+    }
+    return dict[0];
+};
 #endregion
 
 
@@ -294,7 +328,7 @@ void TestCase86()
 
 #region test case 146
 void TestCase146()
-{    
+{
     LRUCache lRUCache = new LRUCache(2);
     lRUCache.Put(1, 1); // 缓存是 {1=1}
     lRUCache.Put(2, 2); // 缓存是 {1=1, 2=2}
@@ -320,19 +354,36 @@ void TestCase146()
     LRUCache lRUCache2 = new LRUCache(2);
     lRUCache2.Put(2, 1);
     lRUCache2.Put(1, 1);
-    lRUCache2.Put(2,3);
-    lRUCache2.Put(4,1);
-    var result6= lRUCache2.Get(1);
+    lRUCache2.Put(2, 3);
+    lRUCache2.Put(4, 1);
+    var result6 = lRUCache2.Get(1);
     var result7 = lRUCache2.Get(2);
     if (result6 != -1 || result7 != 3)
     {
         throw new Exception("test case 146 failed");
     }
-    
+
     Console.WriteLine("test case 146 passed");
 }
-TestCase146();
+// TestCase146();
 #endregion
 
-
+#region test case 104
+void TestCase104()
+{
+    var sln = new Solution104();
+    var result1 = sln.MaxDepth(createTree([3, 9, 20, null, null, 15, 7]));
+    if (result1 != 3)
+    {
+        throw new Exception("test case 104 failed");
+    }
+    var result2 = sln.MaxDepth(createTree([1, null, 2]));
+    if (result2 != 2)
+    {
+        throw new Exception("test case 104 failed");
+    }
+    Console.WriteLine("test case 104 passed");
+}
+TestCase104();
+#endregion
 
