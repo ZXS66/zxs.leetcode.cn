@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Runtime.CompilerServices;
 using System.Text;
 
 Console.WriteLine("########################################");
@@ -61,6 +62,17 @@ Func<int?[], TreeNode> createTree = (arr) =>
     }
     return dict[0];
 };
+
+string treeToString(TreeNode root)
+{
+    if (root == null)
+    {
+        return string.Empty;
+    }
+    return $"{root.val},{treeToString(root.left)},{treeToString(root.right)}";
+};
+
+
 #endregion
 
 
@@ -384,6 +396,54 @@ void TestCase104()
     }
     Console.WriteLine("test case 104 passed");
 }
-TestCase104();
+// TestCase104();
+#endregion
+
+#region test case 100
+void TestCase100()
+{
+    var sln = new Solution100();
+    var result1 = sln.IsSameTree(createTree([1, 2, 3]), createTree([1, 2, 3]));
+    if (!result1)
+    {
+        throw new Exception("test case 100 failed");
+    }
+    var result2 = sln.IsSameTree(createTree([1, 2]), createTree([1, null, 2]));
+    if (result2)
+    {
+        throw new Exception("test case 100 failed");
+    }
+    var result3 = sln.IsSameTree(createTree([1, 2, 1]), createTree([1, 1, 2]));
+    if (result3)
+    {
+        throw new Exception("test case 100 failed");
+    }
+    Console.WriteLine("test case 100 passed");
+}
+// TestCase100();
+#endregion
+
+#region test case 226
+void TestCase226()
+{
+    var sln = new Solution226();
+    var result1 = sln.InvertTree(createTree([4, 2, 7, 1, 3, 6, 9]));
+    if (treeToString(result1) != "4,7,2,9,6,3,1")
+    {
+        throw new Exception("test case 226 failed");
+    }
+    var result2 = sln.InvertTree(createTree([2, 1, 3]));
+    if (treeToString(result2) != "2,3,1")
+    {
+        throw new Exception("test case 226 failed");
+    }
+    var result3 = sln.InvertTree(createTree([]));
+    if (treeToString(result3) != "")
+    {
+        throw new Exception("test case 226 failed");
+    }
+    Console.WriteLine("test case 226 passed");
+}
+TestCase226();
 #endregion
 

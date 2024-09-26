@@ -3,23 +3,23 @@
  * @return {number}
  */
 var removeDuplicates = function (nums) {
-    const maxDuplicates = 2;
-    let i = 0;
-    let dup = 1;
-    for (let j = 1; j < nums.length; j++) {
-        if (nums[i] !== nums[j]) {
-            i++;
-            nums[i] = nums[j];
-            dup = 1;
-        } else if (dup <= maxDuplicates) {
-            nums[i] = nums[j];
-            dup++;
+    let idx = 0;
+    let occurs = 0;
+    let lastValue = undefined;
+    while (nums[idx] !== undefined) {
+        if (nums[idx] === lastValue) {
+            occurs++;
+            if (occurs > 2) {
+                nums.splice(idx, 1);
+                idx--;
+            }
         } else {
-            i++;
-            dup++;
+            occurs = 1;
+            lastValue = nums[idx];
         }
+        idx++;
     }
-    return i + 1;
+    return nums.length;
 };
 
 const testcases = [
