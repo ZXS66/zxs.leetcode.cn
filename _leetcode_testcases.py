@@ -29,6 +29,7 @@ from ransom_note_383 import Solution as Solution_383
 from is_subsequence_392 import Solution as Solution_392
 from distance_between_bus_stops_1184 import Solution as Solution_1184
 from node_with_highest_edge_score_2374 import Solution as Solution_2374
+from take_k_of_each_character_from_left_and_right_2516 import Solution as Solution_2516
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
 
 
@@ -385,6 +386,16 @@ class Leetcode_testcases(unittest.TestCase):
         sln = Solution_2374()
         for tc in testcases:
             output = sln.edgeScore(tc.input)
+            self.assertEqual(tc.output, output)
+
+    def test_case_2516(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"s":"aabaaaacaabc","k":2}, output=8),
+            LeetcodeTestCase(input={"s":"a","k":1}, output=-1),
+        ]
+        sln = Solution_2516()
+        for tc in testcases:
+            output = sln.takeCharacters(tc.input["s"],tc.input["k"])
             self.assertEqual(tc.output, output)
 
     def test_case_2848(self):
