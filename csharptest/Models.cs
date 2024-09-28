@@ -47,3 +47,26 @@ public class TreeNode
         this.right = right;
     }
 }
+
+/// <summary>
+/// definition for binary tree with next pointer that points to the next node in the same level
+/// </summary>
+public class BinaryNodeWithNextPointer {
+    public int val;
+    public Node left;
+    public Node right;
+    public Node next;
+
+    public BinaryNodeWithNextPointer() {}
+
+    public BinaryNodeWithNextPointer(int _val) {
+        val = _val;
+    }
+
+    public BinaryNodeWithNextPointer(int _val, Node _left, Node _right, Node _next) {
+        val = _val;
+        left = _left;
+        right = _right;
+        next = _next;
+    }
+}

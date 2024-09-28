@@ -1,5 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System.Runtime.CompilerServices;
 using System.Text;
 
 Console.WriteLine("########################################");
@@ -67,9 +66,34 @@ string treeToString(TreeNode root)
 {
     if (root == null)
     {
-        return string.Empty;
+        return "null";
     }
-    return $"{root.val},{treeToString(root.left)},{treeToString(root.right)}";
+    // return $"{root.val},{treeToString(root.left)},{treeToString(root.right)}";
+    List<int?> nodes = new List<int?>();
+    Queue<TreeNode?> queue = new Queue<TreeNode?>();
+    queue.Enqueue(root);
+    int depth = 0, count = 0;
+    bool hasLeafNodesOfCurrentDepth = false;
+    while (queue.Count > 0)
+    {
+        TreeNode? cur = queue.Dequeue();
+        nodes.Add(cur?.val);
+        queue.Enqueue(cur?.left);
+        queue.Enqueue(cur?.right);
+        hasLeafNodesOfCurrentDepth = hasLeafNodesOfCurrentDepth || cur?.left != null || cur?.right != null;
+        count++;
+        if (count == Math.Pow(2, depth))
+        {
+            if (!hasLeafNodesOfCurrentDepth)
+            {
+                break;
+            }
+            hasLeafNodesOfCurrentDepth = false;
+            depth++;
+            count = 0;
+        }
+    }
+    return String.Join(",", nodes.Select(n => n.HasValue ? n.Value.ToString() : "null"));
 };
 
 
@@ -444,6 +468,64 @@ void TestCase226()
     }
     Console.WriteLine("test case 226 passed");
 }
-TestCase226();
+// TestCase226();
 #endregion
 
+#region test case 101
+void TestCase101()
+{
+    var sln = new Solution101();
+    var result1 = sln.IsSymmetric(createTree([1, 2, 2, 3, 4, 4, 3]));
+    if (!result1)
+    {
+        throw new Exception("test case 101 failed");
+    }
+    var result2 = sln.IsSymmetric(createTree([1, 2, 2, null, 3, null, 3]));
+    if (result2)
+    {
+        throw new Exception("test case 101 failed");
+    }
+    Console.WriteLine("test case 101 passed");
+}
+// TestCase101();
+#endregion
+
+
+#region test case 105
+void TestCase105()
+{
+    var sln = new Solution105();
+    var result1 = sln.BuildTree([3, 9, 20, 15, 7], [9, 3, 15, 20, 7]);
+    if (treeToString(result1) != "3,9,20,null,null,15,7")
+    {
+        throw new Exception("test case 105 failed");
+    }
+    var result2 = sln.BuildTree([-1], [-1]);
+    if (treeToString(result2) != "-1")
+    {
+        throw new Exception("test case 105 failed");
+    }
+    Console.WriteLine("test case 105 passed");
+}
+//TestCase105();
+#endregion
+
+
+#region test case 106
+void TestCase106()
+{
+    var sln = new Solution106();
+    var result1 = sln.BuildTree([9, 3, 15, 20, 7], [9, 15, 7, 20, 3]);
+    if (treeToString(result1) != "3,9,20,null,null,15,7")
+    {
+        throw new Exception("test case 106 failed");
+    }
+    var result2 = sln.BuildTree([-1], [-1]);
+    if (treeToString(result2) != "-1")
+    {
+        throw new Exception("test case 106 failed");
+    }
+    Console.WriteLine("test case 106 passed");
+}
+//TestCase106();
+#endregion
