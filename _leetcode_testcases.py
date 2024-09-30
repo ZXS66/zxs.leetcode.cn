@@ -11,6 +11,8 @@ from find_the_index_of_the_first_occurrence_in_a_string_28 import (
     Solution as Solution_28,
 )
 from group_anagrams_49 import Solution as Solution_49
+from merge_intervals_56 import Solution as Solution_56
+from insert_interval_57 import Solution as Solution_57
 from length_of_last_word_58 import Solution as Solution_58
 from simplify_path_71 import Solution as Solution_71
 from best_time_to_buy_and_sell_stock_121 import Solution as Solution_121
@@ -27,7 +29,9 @@ from valid_anagram_242 import Solution as Solution_242
 from word_pattern_290 import Solution as Solution_290
 from ransom_note_383 import Solution as Solution_383
 from is_subsequence_392 import Solution as Solution_392
+from minimum_number_of_arrows_to_burst_balloons_452 import Solution as Solution_452
 from distance_between_bus_stops_1184 import Solution as Solution_1184
+from time_needed_to_buy_tickets_2073 import Solution as Solution_2073
 from node_with_highest_edge_score_2374 import Solution as Solution_2374
 from take_k_of_each_character_from_left_and_right_2516 import Solution as Solution_2516
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
@@ -118,6 +122,41 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.groupAnagrams(tc.input)
             # self.assertEqual(str(tc.output), str(output))
+
+    def test_case_56(self):
+        testcases = [
+            LeetcodeTestCase(
+                input=[[1, 3], [2, 6], [8, 10], [15, 18]], output=[[1, 6], [8, 10], [15, 18]]
+            ),
+            LeetcodeTestCase(input=[[1, 4], [4, 5]], output=[[1, 5]]),
+        ]
+        sln = Solution_56()
+        for tc in testcases:
+            output = sln.merge(tc.input)
+            self.assertEqual(str(tc.output), str(output))
+
+    def test_case_57(self):
+        testcases = [
+            LeetcodeTestCase(
+                input={"intervals": [[1,3],[6,9]], "newInterval": [2,5]}, output=[[1,5],[6,9]]
+            ),
+            LeetcodeTestCase(
+                input={"intervals": [[1,2],[3,5],[6,7],[8,10],[12,16]], "newInterval": [4,8]}, output=[[1,2],[3,10],[12,16]]
+            ),
+            LeetcodeTestCase(
+                input={"intervals": [[1,5]], "newInterval": [6,8]}, output=[[1,5],[6,8]]
+            ),
+            LeetcodeTestCase(
+                input={"intervals": [[1,5]], "newInterval": [0,0]}, output=[[0,0],[1,5]]
+            ),
+            LeetcodeTestCase(
+                input={"intervals": [[3,5],[12,15]], "newInterval": [6,6]}, output=[[3,5],[6,6],[12,15]]
+            ),
+        ]
+        sln = Solution_57()
+        for tc in testcases:
+            output = sln.insert(tc.input["intervals"], tc.input["newInterval"])
+            self.assertEqual(str(tc.output), str(output))
 
     def test_case_58(self):
         testcases = [
@@ -354,6 +393,17 @@ class Leetcode_testcases(unittest.TestCase):
             )
             self.assertEqual(tc.output, output)
 
+    def test_case_452(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input=[[10,16],[2,8],[1,6],[7,12]], output=2),
+            LeetcodeTestCase(input=[[1,2],[3,4],[5,6],[7,8]], output=4),
+            LeetcodeTestCase(input=[[1,2],[2,3],[3,4],[4,5]], output=2),
+        ]
+        sln = Solution_452()
+        for tc in testcases:
+            output = sln.findMinArrowShots(points=tc.input)
+            self.assertEqual(tc.output, output)
+
     def test_case_1184(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(
@@ -375,6 +425,19 @@ class Leetcode_testcases(unittest.TestCase):
                 distance=tc.input["distance"],
                 start=tc.input["start"],
                 destination=tc.input["destination"],
+            )
+            self.assertEqual(tc.output, output)
+
+    def test_case_2073(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"tickets":[2,3,2],"k":2}, output=6),
+            LeetcodeTestCase(input={"tickets":[5,1,1,1],"k":0}, output=8),
+        ]
+        sln = Solution_2073()
+        for tc in testcases:
+            output = sln.timeRequiredToBuy(
+                tickets=tc.input["tickets"],
+                k=tc.input["k"],
             )
             self.assertEqual(tc.output, output)
 
