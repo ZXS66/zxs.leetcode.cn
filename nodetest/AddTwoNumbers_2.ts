@@ -1,19 +1,8 @@
 // https://leetcode.cn/problems/add-two-numbers/description/?envType=study-plan-v2&envId=top-interview-150
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
+import { ListNode } from "./models";
 
-/**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- */
-var addTwoNumbers = function (l1, l2) {
+export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode {
     const sumValOfFirst = (l1?.val ?? 0) + (l2?.val ?? 0);
     const sum = new ListNode(sumValOfFirst % 10);
     let n = sum;
