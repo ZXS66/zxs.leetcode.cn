@@ -32,6 +32,7 @@ from is_subsequence_392 import Solution as Solution_392
 from minimum_number_of_arrows_to_burst_balloons_452 import Solution as Solution_452
 from distance_between_bus_stops_1184 import Solution as Solution_1184
 from time_needed_to_buy_tickets_2073 import Solution as Solution_2073
+from maximize_number_of_subsequences_in_a_string_2207 import Solution as Solution_2207
 from node_with_highest_edge_score_2374 import Solution as Solution_2374
 from take_k_of_each_character_from_left_and_right_2516 import Solution as Solution_2516
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
@@ -126,7 +127,8 @@ class Leetcode_testcases(unittest.TestCase):
     def test_case_56(self):
         testcases = [
             LeetcodeTestCase(
-                input=[[1, 3], [2, 6], [8, 10], [15, 18]], output=[[1, 6], [8, 10], [15, 18]]
+                input=[[1, 3], [2, 6], [8, 10], [15, 18]],
+                output=[[1, 6], [8, 10], [15, 18]],
             ),
             LeetcodeTestCase(input=[[1, 4], [4, 5]], output=[[1, 5]]),
         ]
@@ -138,19 +140,27 @@ class Leetcode_testcases(unittest.TestCase):
     def test_case_57(self):
         testcases = [
             LeetcodeTestCase(
-                input={"intervals": [[1,3],[6,9]], "newInterval": [2,5]}, output=[[1,5],[6,9]]
+                input={"intervals": [[1, 3], [6, 9]], "newInterval": [2, 5]},
+                output=[[1, 5], [6, 9]],
             ),
             LeetcodeTestCase(
-                input={"intervals": [[1,2],[3,5],[6,7],[8,10],[12,16]], "newInterval": [4,8]}, output=[[1,2],[3,10],[12,16]]
+                input={
+                    "intervals": [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]],
+                    "newInterval": [4, 8],
+                },
+                output=[[1, 2], [3, 10], [12, 16]],
             ),
             LeetcodeTestCase(
-                input={"intervals": [[1,5]], "newInterval": [6,8]}, output=[[1,5],[6,8]]
+                input={"intervals": [[1, 5]], "newInterval": [6, 8]},
+                output=[[1, 5], [6, 8]],
             ),
             LeetcodeTestCase(
-                input={"intervals": [[1,5]], "newInterval": [0,0]}, output=[[0,0],[1,5]]
+                input={"intervals": [[1, 5]], "newInterval": [0, 0]},
+                output=[[0, 0], [1, 5]],
             ),
             LeetcodeTestCase(
-                input={"intervals": [[3,5],[12,15]], "newInterval": [6,6]}, output=[[3,5],[6,6],[12,15]]
+                input={"intervals": [[3, 5], [12, 15]], "newInterval": [6, 6]},
+                output=[[3, 5], [6, 6], [12, 15]],
             ),
         ]
         sln = Solution_57()
@@ -395,9 +405,9 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_452(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input=[[10,16],[2,8],[1,6],[7,12]], output=2),
-            LeetcodeTestCase(input=[[1,2],[3,4],[5,6],[7,8]], output=4),
-            LeetcodeTestCase(input=[[1,2],[2,3],[3,4],[4,5]], output=2),
+            LeetcodeTestCase(input=[[10, 16], [2, 8], [1, 6], [7, 12]], output=2),
+            LeetcodeTestCase(input=[[1, 2], [3, 4], [5, 6], [7, 8]], output=4),
+            LeetcodeTestCase(input=[[1, 2], [2, 3], [3, 4], [4, 5]], output=2),
         ]
         sln = Solution_452()
         for tc in testcases:
@@ -430,8 +440,8 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_2073(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input={"tickets":[2,3,2],"k":2}, output=6),
-            LeetcodeTestCase(input={"tickets":[5,1,1,1],"k":0}, output=8),
+            LeetcodeTestCase(input={"tickets": [2, 3, 2], "k": 2}, output=6),
+            LeetcodeTestCase(input={"tickets": [5, 1, 1, 1], "k": 0}, output=8),
         ]
         sln = Solution_2073()
         for tc in testcases:
@@ -439,6 +449,16 @@ class Leetcode_testcases(unittest.TestCase):
                 tickets=tc.input["tickets"],
                 k=tc.input["k"],
             )
+            self.assertEqual(tc.output, output)
+
+    def test_case_2207(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"text": "abdcdbc", "pattern": "ac"}, output=4),
+            LeetcodeTestCase(input={"text": "aabb", "pattern": "ab"}, output=6),
+        ]
+        sln = Solution_2207()
+        for tc in testcases:
+            output = sln.maximumSubsequenceCount(tc.input["text"], tc.input["pattern"])
             self.assertEqual(tc.output, output)
 
     def test_case_2374(self):
@@ -453,12 +473,12 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_2516(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input={"s":"aabaaaacaabc","k":2}, output=8),
-            LeetcodeTestCase(input={"s":"a","k":1}, output=-1),
+            LeetcodeTestCase(input={"s": "aabaaaacaabc", "k": 2}, output=8),
+            LeetcodeTestCase(input={"s": "a", "k": 1}, output=-1),
         ]
         sln = Solution_2516()
         for tc in testcases:
-            output = sln.takeCharacters(tc.input["s"],tc.input["k"])
+            output = sln.takeCharacters(tc.input["s"], tc.input["k"])
             self.assertEqual(tc.output, output)
 
     def test_case_2848(self):
