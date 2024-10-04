@@ -542,5 +542,25 @@ void TestCase117()
     var result1 = sln.Connect(root);
     Console.WriteLine("test case 106 passed");
 }
-TestCase117();
+// TestCase117();
 #endregion
+
+#region test case 1227
+void TestCase1227()
+{
+    var sln = new Solution1227();
+    var result1 = sln.NthPersonGetsNthSeat(1);
+    if (result1 != 1)
+    {
+        throw new Exception("test case 1227 failed");
+    }
+    var result2 = sln.NthPersonGetsNthSeat(2);
+    if (result2 != 0.5)
+    {
+        throw new Exception("test case 1227 failed");
+    }
+    Console.WriteLine("test case 1227 passed");
+}
+TestCase1227();
+#endregion
+
