@@ -74,7 +74,7 @@ string treeToString(TreeNode root)
     queue.Enqueue(root);
     int depth = 0, count = 0;
     bool hasLeafNodesOfCurrentDepth = false;
-    while (queue.Count > 0)
+    while (true)
     {
         TreeNode? cur = queue.Dequeue();
         nodes.Add(cur?.val);
@@ -528,4 +528,19 @@ void TestCase106()
     Console.WriteLine("test case 106 passed");
 }
 //TestCase106();
+#endregion
+
+#region test case 117
+void TestCase117()
+{
+    var sln = new Solution117();
+    var root = new BinaryNodeWithNextPointer(1)
+    {
+        left = new BinaryNodeWithNextPointer(2) { left = new BinaryNodeWithNextPointer(4), right = new BinaryNodeWithNextPointer(5) },
+        right = new BinaryNodeWithNextPointer(3) { right = new BinaryNodeWithNextPointer(7) }
+    };
+    var result1 = sln.Connect(root);
+    Console.WriteLine("test case 106 passed");
+}
+TestCase117();
 #endregion

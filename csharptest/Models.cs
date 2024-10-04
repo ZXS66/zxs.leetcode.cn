@@ -53,9 +53,9 @@ public class TreeNode
 /// </summary>
 public class BinaryNodeWithNextPointer {
     public int val;
-    public Node left;
-    public Node right;
-    public Node next;
+    public BinaryNodeWithNextPointer left;
+    public BinaryNodeWithNextPointer right;
+    public BinaryNodeWithNextPointer next;
 
     public BinaryNodeWithNextPointer() {}
 
@@ -63,7 +63,7 @@ public class BinaryNodeWithNextPointer {
         val = _val;
     }
 
-    public BinaryNodeWithNextPointer(int _val, Node _left, Node _right, Node _next) {
+    public BinaryNodeWithNextPointer(int _val, BinaryNodeWithNextPointer _left, BinaryNodeWithNextPointer _right, BinaryNodeWithNextPointer _next) {
         val = _val;
         left = _left;
         right = _right;
