@@ -4,12 +4,14 @@ from dataclasses import dataclass
 from min_stack_155 import MinStack
 
 from two_sum_1 import Solution as Solution_1
+from integer_to_roman_12 import Solution as Solution_12
 from roman_to_integer_13 import Solution as Solution_13
 from longest_common_prefix_14 import Solution as Solution_14
 from valid_parentheses_20 import Solution as Solution_20
 from find_the_index_of_the_first_occurrence_in_a_string_28 import (
     Solution as Solution_28,
 )
+from trapping_rain_water_42 import Solution as Solution_42
 from group_anagrams_49 import Solution as Solution_49
 from merge_intervals_56 import Solution as Solution_56
 from insert_interval_57 import Solution as Solution_57
@@ -19,6 +21,7 @@ from best_time_to_buy_and_sell_stock_121 import Solution as Solution_121
 from valid_palindrome_125 import Solution as Solution_125
 from longest_consecutive_sequence_128 import Solution as Solution_128
 from evaluate_reverse_polish_notation_150 import Solution as Solution_150
+from reverse_words_in_a_string_151 import Solution as Solution_151
 from majority_element_169 import Solution as Solution_169
 from happy_number_202 import Solution as Solution_202
 from isomorphic_strings_205 import Solution as Solution_205
@@ -32,6 +35,7 @@ from is_subsequence_392 import Solution as Solution_392
 from minimum_number_of_arrows_to_burst_balloons_452 import Solution as Solution_452
 from distance_between_bus_stops_1184 import Solution as Solution_1184
 from time_needed_to_buy_tickets_2073 import Solution as Solution_2073
+from minimum_time_to_complete_trips_2187 import Solution as Solution_2187
 from maximize_number_of_subsequences_in_a_string_2207 import Solution as Solution_2207
 from node_with_highest_edge_score_2374 import Solution as Solution_2374
 from take_k_of_each_character_from_left_and_right_2516 import Solution as Solution_2516
@@ -58,6 +62,17 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.twoSum(tc.input["nums"], tc.input["target"])
             self.assertEqual(str(tc.output), str(output))
+
+    def test_case_12(self):
+        testcases = [
+            LeetcodeTestCase(input=3749, output="MMMDCCXLIX"),
+            LeetcodeTestCase(input=58, output="LVIII"),
+            LeetcodeTestCase(input=1994, output="MCMXCIV"),
+        ]
+        sln = Solution_12()
+        for tc in testcases:
+            output = sln.intToRoman(tc.input)
+            self.assertEqual(tc.output, output)
 
     def test_case_13(self):
         testcases = [
@@ -108,6 +123,16 @@ class Leetcode_testcases(unittest.TestCase):
         sln = Solution_28()
         for tc in testcases:
             output = sln.strStr(tc.input["haystack"], tc.input["needle"])
+            self.assertEqual(tc.output, output)
+
+    def test_case_42(self):
+        testcases = [
+            LeetcodeTestCase(input=[0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1], output=6),
+            LeetcodeTestCase(input=[4, 2, 0, 3, 2, 5], output=9),
+        ]
+        sln = Solution_42()
+        for tc in testcases:
+            output = sln.trap(tc.input)
             self.assertEqual(tc.output, output)
 
     def test_case_49(self):
@@ -256,6 +281,18 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.evalRPN(tc.input)
             self.assertEqual(tc.output, output)
+
+    def test_case_151(self):
+        testcases = [
+            LeetcodeTestCase(input="the sky is blue", output="blue is sky the"),
+            LeetcodeTestCase(input="  hello world  ", output="world hello"),
+            LeetcodeTestCase(input="a good   example", output="example good a"),
+        ]
+        sln = Solution_151()
+        for tc in testcases:
+            output = sln.reverseWords(tc.input)
+            self.assertEqual(tc.output, output)
+
 
     def test_case_155(self):
         minStack = MinStack()
@@ -449,6 +486,16 @@ class Leetcode_testcases(unittest.TestCase):
                 tickets=tc.input["tickets"],
                 k=tc.input["k"],
             )
+            self.assertEqual(tc.output, output)
+
+    def test_case_2187(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"time": [1, 2, 3], "totalTrips": 5}, output=3),
+            LeetcodeTestCase(input={"time": [2], "totalTrips": 1}, output=2),
+        ]
+        sln = Solution_2187()
+        for tc in testcases:
+            output = sln.minimumTime(tc.input["time"], tc.input["totalTrips"])
             self.assertEqual(tc.output, output)
 
     def test_case_2207(self):
