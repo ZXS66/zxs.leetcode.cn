@@ -11,12 +11,15 @@ from valid_parentheses_20 import Solution as Solution_20
 from find_the_index_of_the_first_occurrence_in_a_string_28 import (
     Solution as Solution_28,
 )
+from substring_with_concatenation_of_all_words_30 import Solution as Solution_30
 from trapping_rain_water_42 import Solution as Solution_42
 from group_anagrams_49 import Solution as Solution_49
 from merge_intervals_56 import Solution as Solution_56
 from insert_interval_57 import Solution as Solution_57
 from length_of_last_word_58 import Solution as Solution_58
 from simplify_path_71 import Solution as Solution_71
+from set_matrix_zeroes_73 import Solution as Solution_73
+from minimum_window_substring_76 import Solution as Solution_76
 from best_time_to_buy_and_sell_stock_121 import Solution as Solution_121
 from valid_palindrome_125 import Solution as Solution_125
 from longest_consecutive_sequence_128 import Solution as Solution_128
@@ -29,6 +32,7 @@ from contains_duplicate_ii_219 import Solution as Solution_219
 from basic_calculator_224 import Solution as Solution_224
 from summary_ranges_228 import Solution as Solution_228
 from valid_anagram_242 import Solution as Solution_242
+from game_of_life_289 import Solution as Solution_289
 from word_pattern_290 import Solution as Solution_290
 from ransom_note_383 import Solution as Solution_383
 from is_subsequence_392 import Solution as Solution_392
@@ -125,6 +129,49 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.strStr(tc.input["haystack"], tc.input["needle"])
             self.assertEqual(tc.output, output)
 
+    def test_case_30(self):
+        testcases = [
+            LeetcodeTestCase(
+                input={
+                    "s": "barfoothefoobarman",
+                    "words": ["foo", "bar"],
+                },
+                output=[0, 9],
+            ),
+            LeetcodeTestCase(
+                input={
+                    "s": "wordgoodgoodgoodbestword",
+                    "words": ["word", "good", "best", "word"],
+                },
+                output=[],
+            ),
+            LeetcodeTestCase(
+                input={
+                    "s": "barfoofoobarthefoobarman",
+                    "words": ["bar", "foo", "the"],
+                },
+                output=[6, 9, 12],
+            ),
+            LeetcodeTestCase(
+                input={
+                    "s": "wordgoodgoodgoodbestword",
+                    "words": ["word", "good", "best", "good"],
+                },
+                output=[8],
+            ),
+            LeetcodeTestCase(
+                input={
+                    "s": "lingmindraboofooowingdingbarrwingmonkeypoundcake",
+                    "words": ["fooo", "barr", "wing", "ding", "wing"],
+                },
+                output=[13],
+            ),
+        ]
+        sln = Solution_30()
+        for tc in testcases:
+            output = sln.findSubstring(tc.input["s"], tc.input["words"])
+            self.assertEqual(str(tc.output), str(output))
+
     def test_case_42(self):
         testcases = [
             LeetcodeTestCase(input=[0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1], output=6),
@@ -219,6 +266,33 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.simplifyPath(tc.input)
             self.assertEqual(tc.output, output)
 
+    def test_case_73(self):
+        testcases = [
+            LeetcodeTestCase(
+                input=[[1, 1, 1], [1, 0, 1], [1, 1, 1]],
+                output=[[1, 0, 1], [0, 0, 0], [1, 0, 1]],
+            ),
+            LeetcodeTestCase(
+                input=[[0, 1, 2, 0], [3, 4, 5, 2], [1, 3, 1, 5]],
+                output=[[0, 0, 0, 0], [0, 4, 5, 0], [0, 3, 1, 0]],
+            ),
+        ]
+        sln = Solution_73()
+        for tc in testcases:
+            sln.setZeroes(tc.input)
+            self.assertEqual(str(tc.output), str(tc.input))
+
+    def test_case_76(self):
+        testcases = [
+            LeetcodeTestCase(input={"s": "ADOBECODEBANC", "t": "ABC"}, output="BANC"),
+            LeetcodeTestCase(input={"s": "a", "t": "a"}, output="a"),
+            LeetcodeTestCase(input={"s": "a", "t": "aa"}, output=""),
+        ]
+        sln = Solution_76()
+        for tc in testcases:
+            output = sln.minWindow(tc.input["s"], tc.input["t"])
+            self.assertEqual(tc.output, output)
+
     def test_case_121(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input=[7, 1, 5, 3, 6, 4], output=5),
@@ -292,7 +366,6 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.reverseWords(tc.input)
             self.assertEqual(tc.output, output)
-
 
     def test_case_155(self):
         minStack = MinStack()
@@ -389,6 +462,19 @@ class Leetcode_testcases(unittest.TestCase):
                 t=tc.input["t"],
             )
             self.assertEqual(tc.output, output)
+
+    def test_case_289(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(
+                input=[[0, 1, 0], [0, 0, 1], [1, 1, 1], [0, 0, 0]],
+                output=[[0, 0, 0], [1, 0, 1], [0, 1, 1], [0, 1, 0]],
+            ),
+            LeetcodeTestCase(input=[[1, 1], [1, 0]], output=[[1, 1], [1, 1]]),
+        ]
+        sln = Solution_289()
+        for tc in testcases:
+            sln.gameOfLife(tc.input)
+            self.assertEqual(str(tc.output), str(tc.input))
 
     def test_case_290(self):
         testcases: list[LeetcodeTestCase] = [
