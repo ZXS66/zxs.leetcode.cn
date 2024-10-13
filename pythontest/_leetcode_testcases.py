@@ -22,12 +22,14 @@ from set_matrix_zeroes_73 import Solution as Solution_73
 from minimum_window_substring_76 import Solution as Solution_76
 from best_time_to_buy_and_sell_stock_121 import Solution as Solution_121
 from valid_palindrome_125 import Solution as Solution_125
+from word_ladder_127 import Solution as Solution_127
 from longest_consecutive_sequence_128 import Solution as Solution_128
 from evaluate_reverse_polish_notation_150 import Solution as Solution_150
 from reverse_words_in_a_string_151 import Solution as Solution_151
 from majority_element_169 import Solution as Solution_169
 from happy_number_202 import Solution as Solution_202
 from isomorphic_strings_205 import Solution as Solution_205
+from implement_trie_prefix_tree_208 import Trie
 from contains_duplicate_ii_219 import Solution as Solution_219
 from basic_calculator_224 import Solution as Solution_224
 from summary_ranges_228 import Solution as Solution_228
@@ -36,14 +38,18 @@ from game_of_life_289 import Solution as Solution_289
 from word_pattern_290 import Solution as Solution_290
 from ransom_note_383 import Solution as Solution_383
 from is_subsequence_392 import Solution as Solution_392
+from minimum_genetic_mutation_433 import Solution as Solution_433
 from minimum_number_of_arrows_to_burst_balloons_452 import Solution as Solution_452
 from distance_between_bus_stops_1184 import Solution as Solution_1184
+from egg_drop_with_2_eggs_and_n_floors_1884 import Solution as Solution_1884
 from time_needed_to_buy_tickets_2073 import Solution as Solution_2073
 from minimum_time_to_complete_trips_2187 import Solution as Solution_2187
 from maximize_number_of_subsequences_in_a_string_2207 import Solution as Solution_2207
+from number_of_excellent_pairs_2354 import Solution as Solution_2354
 from node_with_highest_edge_score_2374 import Solution as Solution_2374
 from take_k_of_each_character_from_left_and_right_2516 import Solution as Solution_2516
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
+from find_the_number_of_good_pairs_ii_3164 import Solution as Solution_3164
 
 
 @dataclass
@@ -316,6 +322,32 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.isPalindrome(tc.input)
             self.assertEqual(tc.output, output)
 
+    def test_case_127(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(
+                input={
+                    "beginWord": "hit",
+                    "endWord": "cog",
+                    "wordList": ["hot", "dot", "dog", "lot", "log", "cog"],
+                },
+                output=5,
+            ),
+            LeetcodeTestCase(
+                input={
+                    "beginWord": "hit",
+                    "endWord": "cog",
+                    "wordList": ["hot", "dot", "dog", "lot", "log"],
+                },
+                output=0,
+            ),
+        ]
+        sln = Solution_127()
+        for tc in testcases:
+            output = sln.ladderLength(
+                tc.input["beginWord"], tc.input["endWord"], tc.input["wordList"]
+            )
+            self.assertEqual(tc.output, output)
+
     def test_case_128(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input=[100, 4, 200, 1, 3, 2], output=4),
@@ -407,6 +439,19 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.isIsomorphic(tc.input["s"], tc.input["t"])
             self.assertEqual(tc.output, output)
+
+    def test_case_208(self):
+        trie = Trie()
+        trie.insert("apple")
+        ret1 = trie.search("apple")
+        self.assertTrue(ret1)
+        ret2 = trie.search("app")
+        self.assertFalse(ret2)
+        ret3 = trie.startsWith("app")
+        self.assertTrue(ret3)
+        trie.insert("app")
+        ret4 = trie.search("app")
+        self.assertTrue(ret4)
 
     def test_case_219(self):
         testcases: list[LeetcodeTestCase] = [
@@ -526,6 +571,38 @@ class Leetcode_testcases(unittest.TestCase):
             )
             self.assertEqual(tc.output, output)
 
+    def test_case_433(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(
+                input={"start": "AACCGGTT", "end": "AACCGGTA", "bank": ["AACCGGTA"]},
+                output=1,
+            ),
+            LeetcodeTestCase(
+                input={
+                    "start": "AACCGGTT",
+                    "end": "AAACGGTA",
+                    "bank": ["AACCGGTA", "AACCGCTA", "AAACGGTA"],
+                },
+                output=2,
+            ),
+            LeetcodeTestCase(
+                input={
+                    "start": "AAAAACCC",
+                    "end": "AACCCCCC",
+                    "bank": ["AAAACCCC", "AAACCCCC", "AACCCCCC"],
+                },
+                output=3,
+            ),
+        ]
+        sln = Solution_433()
+        for tc in testcases:
+            output = sln.minMutation(
+                tc.input["start"],
+                tc.input["end"],
+                tc.input["bank"],
+            )
+            self.assertEqual(tc.output, output)
+
     def test_case_452(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input=[[10, 16], [2, 8], [1, 6], [7, 12]], output=2),
@@ -561,6 +638,16 @@ class Leetcode_testcases(unittest.TestCase):
             )
             self.assertEqual(tc.output, output)
 
+    def test_case_1884(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input=2, output=2),
+            LeetcodeTestCase(input=100, output=14),
+        ]
+        sln = Solution_1884()
+        for tc in testcases:
+            output = sln.twoEggDrop(tc.input)
+            self.assertEqual(tc.output, output)
+
     def test_case_2073(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input={"tickets": [2, 3, 2], "k": 2}, output=6),
@@ -594,6 +681,16 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.maximumSubsequenceCount(tc.input["text"], tc.input["pattern"])
             self.assertEqual(tc.output, output)
 
+    def test_case_2354(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"nums": [1, 2, 3, 1], "k": 3}, output=5),
+            LeetcodeTestCase(input={"nums": [5, 1, 1], "k": 10}, output=0),
+        ]
+        sln = Solution_2354()
+        for tc in testcases:
+            output = sln.countExcellentPairs(tc.input["nums"], tc.input["k"])
+            self.assertEqual(tc.output, output)
+
     def test_case_2374(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input=[1, 0, 0, 0, 0, 7, 7, 5], output=7),
@@ -622,6 +719,22 @@ class Leetcode_testcases(unittest.TestCase):
         sln = Solution_2848()
         for tc in testcases:
             output = sln.numberOfPoints(tc.input)
+            self.assertEqual(tc.output, output)
+
+    def test_case_3164(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(
+                input={"nums1": [1, 3, 4], "nums2": [1, 3, 4], "k": 1}, output=5
+            ),
+            LeetcodeTestCase(
+                input={"nums1": [1, 2, 4, 12], "nums2": [2, 4], "k": 3}, output=2
+            ),
+        ]
+        sln = Solution_3164()
+        for tc in testcases:
+            output = sln.numberOfPairs(
+                tc.input["nums1"], tc.input["nums2"], tc.input["k"]
+            )
             self.assertEqual(tc.output, output)
 
 
