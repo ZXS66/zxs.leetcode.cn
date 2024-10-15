@@ -30,6 +30,7 @@ from majority_element_169 import Solution as Solution_169
 from happy_number_202 import Solution as Solution_202
 from isomorphic_strings_205 import Solution as Solution_205
 from implement_trie_prefix_tree_208 import Trie
+from design_add_and_search_words_data_structure_211 import WordDictionary
 from contains_duplicate_ii_219 import Solution as Solution_219
 from basic_calculator_224 import Solution as Solution_224
 from summary_ranges_228 import Solution as Solution_228
@@ -40,6 +41,7 @@ from ransom_note_383 import Solution as Solution_383
 from is_subsequence_392 import Solution as Solution_392
 from minimum_genetic_mutation_433 import Solution as Solution_433
 from minimum_number_of_arrows_to_burst_balloons_452 import Solution as Solution_452
+from super_egg_drop_877 import Solution as Solution_877
 from distance_between_bus_stops_1184 import Solution as Solution_1184
 from egg_drop_with_2_eggs_and_n_floors_1884 import Solution as Solution_1884
 from time_needed_to_buy_tickets_2073 import Solution as Solution_2073
@@ -50,6 +52,7 @@ from node_with_highest_edge_score_2374 import Solution as Solution_2374
 from take_k_of_each_character_from_left_and_right_2516 import Solution as Solution_2516
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
 from find_the_number_of_good_pairs_ii_3164 import Solution as Solution_3164
+from maximum_height_of_a_triangle_3200 import Solution as Solution_3200
 
 
 @dataclass
@@ -453,6 +456,16 @@ class Leetcode_testcases(unittest.TestCase):
         ret4 = trie.search("app")
         self.assertTrue(ret4)
 
+    def test_case_211(self):
+        wordDictionary = WordDictionary()
+        wordDictionary.addWord("bad")
+        wordDictionary.addWord("dad")
+        wordDictionary.addWord("mad")
+        self.assertFalse(wordDictionary.search("pad"))
+        self.assertTrue(wordDictionary.search("bad"))
+        self.assertTrue(wordDictionary.search(".ad"))
+        self.assertTrue(wordDictionary.search("b.."))
+
     def test_case_219(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input={"nums": [1, 2, 3, 1], "k": 3}, output=True),
@@ -614,6 +627,20 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.findMinArrowShots(points=tc.input)
             self.assertEqual(tc.output, output)
 
+    def test_case_877(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"k":1,"n":2}, output=2),
+            LeetcodeTestCase(input={"k":2,"n":4}, output=3),
+            LeetcodeTestCase(input={"k":2,"n":6}, output=3),
+            LeetcodeTestCase(input={"k":3,"n":2}, output=2),
+            LeetcodeTestCase(input={"k":3,"n":3}, output=2),
+            LeetcodeTestCase(input={"k":3,"n":14}, output=4),
+        ]
+        sln = Solution_877()
+        for tc in testcases:
+            output = sln.superEggDrop(tc.input["k"], tc.input["n"])
+            self.assertEqual(tc.output, output)
+
     def test_case_1184(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(
@@ -736,6 +763,19 @@ class Leetcode_testcases(unittest.TestCase):
                 tc.input["nums1"], tc.input["nums2"], tc.input["k"]
             )
             self.assertEqual(tc.output, output)
+
+    def test_case_3200(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"red": 2, "blue": 3}, output=2),
+            LeetcodeTestCase(input={"red": 2, "blue": 4}, output=3),
+            LeetcodeTestCase(input={"red": 1, "blue": 2}, output=2),
+            LeetcodeTestCase(input={"red": 1, "blue": 1}, output=1),
+            LeetcodeTestCase(input={"red": 10, "blue": 1}, output=2),
+        ]
+        sln = Solution_3200()
+        for tc in testcases:
+            output = sln.maxHeightOfTriangle(tc.input['red'], tc.input['blue'])
+            self.assertEqual(tc.output,output)
 
 
 if __name__ == "__main__":
