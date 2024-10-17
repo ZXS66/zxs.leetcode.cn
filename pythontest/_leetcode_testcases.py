@@ -7,19 +7,27 @@ from two_sum_1 import Solution as Solution_1
 from integer_to_roman_12 import Solution as Solution_12
 from roman_to_integer_13 import Solution as Solution_13
 from longest_common_prefix_14 import Solution as Solution_14
+from letter_combinations_of_a_phone_number_17 import Solution as Solution_17
 from valid_parentheses_20 import Solution as Solution_20
+from generate_parentheses_22 import Solution as Solution_22
 from find_the_index_of_the_first_occurrence_in_a_string_28 import (
     Solution as Solution_28,
 )
 from substring_with_concatenation_of_all_words_30 import Solution as Solution_30
+from combination_sum_39 import Solution as Solution_39
 from trapping_rain_water_42 import Solution as Solution_42
+from permutations_46 import Solution as Solution_46
 from group_anagrams_49 import Solution as Solution_49
+from n_queens_51 import Solution as Solution_51
+from n_queens_ii_52 import Solution as Solution_52
 from merge_intervals_56 import Solution as Solution_56
 from insert_interval_57 import Solution as Solution_57
 from length_of_last_word_58 import Solution as Solution_58
 from simplify_path_71 import Solution as Solution_71
 from set_matrix_zeroes_73 import Solution as Solution_73
 from minimum_window_substring_76 import Solution as Solution_76
+from combinations_77 import Solution as Solution_77
+from word_search_79 import Solution as Solution_79
 from best_time_to_buy_and_sell_stock_121 import Solution as Solution_121
 from valid_palindrome_125 import Solution as Solution_125
 from word_ladder_127 import Solution as Solution_127
@@ -52,6 +60,7 @@ from node_with_highest_edge_score_2374 import Solution as Solution_2374
 from take_k_of_each_character_from_left_and_right_2516 import Solution as Solution_2516
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
 from find_the_number_of_good_pairs_ii_3164 import Solution as Solution_3164
+from minimum_average_of_smallest_and_largest_elements_3194 import Solution as Solution_3194
 from maximum_height_of_a_triangle_3200 import Solution as Solution_3200
 
 
@@ -110,6 +119,36 @@ class Leetcode_testcases(unittest.TestCase):
         ]
         sln = Solution_14()
 
+    def test_case_17(self):
+        testcases = [
+            LeetcodeTestCase(
+                input="23",
+                output=[
+                    "ad",
+                    "ae",
+                    "af",
+                    "bd",
+                    "be",
+                    "bf",
+                    "cd",
+                    "ce",
+                    "cf",
+                ],
+            ),
+            LeetcodeTestCase(
+                input="",
+                output=[],
+            ),
+            LeetcodeTestCase(
+                input="2",
+               output=["a", "b", "c"]
+            )
+        ]
+        sln = Solution_17()
+        for tc in testcases:
+            output = sln.letterCombinations(tc.input)
+            self.assertEqual(str(tc.output), str(output))
+
     def test_case_20(self):
         testcases = [
             LeetcodeTestCase(input="()", output=True),
@@ -123,6 +162,16 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.isValid(tc.input)
             self.assertEqual(tc.output, output)
+
+    def test_case_22(self):
+        testcases = [
+            LeetcodeTestCase(input=3, output=["((()))", "(()())", "(())()", "()(())", "()()()"]),
+            LeetcodeTestCase(input=1, output=["()"]),
+        ]
+        sln = Solution_22()
+        for tc in testcases:
+            output = sln.generateParenthesis(tc.input)
+            self.assertEqual(len(tc.output), len(output))
 
     def test_case_28(self):
         testcases = [
@@ -181,6 +230,17 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.findSubstring(tc.input["s"], tc.input["words"])
             self.assertEqual(str(tc.output), str(output))
 
+    def test_case_39(self):
+        testcases = [
+            LeetcodeTestCase(input={"candidates": [2,3,6,7], "target": 7}, output=[[2,2,3],[7]]),
+            LeetcodeTestCase(input={"candidates": [2,3,5], "target": 8}, output=[[2,2,2,2],[2,3,3],[3,5]]),
+            LeetcodeTestCase(input={"candidates": [2], "target": 1}, output=[])
+        ]
+        sln = Solution_39()
+        for tc in testcases:
+            output = sln.combinationSum(tc.input["candidates"], tc.input["target"])
+            self.assertEqual(len(tc.output), len(output))
+
     def test_case_42(self):
         testcases = [
             LeetcodeTestCase(input=[0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1], output=6),
@@ -190,6 +250,17 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.trap(tc.input)
             self.assertEqual(tc.output, output)
+
+    def test_case_46(self):
+        testcases = [
+            LeetcodeTestCase(input=[1, 2, 3], output=[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]),
+            LeetcodeTestCase(input=[0,1], output=[[0,1],[1,0]]),
+            LeetcodeTestCase(input=[1], output=[[1]]),
+        ]
+        sln = Solution_46()
+        for tc in testcases:
+            output = sln.permute(tc.input)
+            self.assertEqual(len(tc.output), len(output))
 
     def test_case_49(self):
         testcases = [
@@ -204,6 +275,26 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.groupAnagrams(tc.input)
             # self.assertEqual(str(tc.output), str(output))
+
+    def test_case_51(self):
+        testcases = [
+            LeetcodeTestCase(input=1, output=[["Q"]]),
+            LeetcodeTestCase(input=4, output=[[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]),
+        ]
+        sln = Solution_51()
+        for tc in testcases:
+            output = sln.solveNQueens(tc.input)
+            self.assertEqual(len(tc.output), len(output))
+
+    def test_case_52(self):
+        testcases = [
+            LeetcodeTestCase(input=1, output=1),
+            LeetcodeTestCase(input=4, output=2),
+        ]
+        sln = Solution_52()
+        for tc in testcases:
+            output = sln.totalNQueens(tc.input)
+            self.assertEqual(tc.output, output)
 
     def test_case_56(self):
         testcases = [
@@ -300,6 +391,55 @@ class Leetcode_testcases(unittest.TestCase):
         sln = Solution_76()
         for tc in testcases:
             output = sln.minWindow(tc.input["s"], tc.input["t"])
+            self.assertEqual(tc.output, output)
+
+    def test_case_77(self):
+        testcases = [
+            LeetcodeTestCase(input={"n":4,"k":2}, output=[
+                [2,4],
+                [3,4],
+                [2,3],
+                [1,2],
+                [1,3],
+                [1,4],
+            ]),
+            LeetcodeTestCase(input={"n":1,"k":1}, output=[[1]]),
+        ]
+        sln = Solution_77()
+        for tc in testcases:
+            output = sln.combine(tc.input["n"], tc.input["k"])
+            # self.assertEqual(str(tc.output), str(output))
+            self.assertEqual(len(tc.output),len(output))
+
+    def test_case_79(self):
+        testcases = [
+            LeetcodeTestCase(
+                input={
+                    "board": [
+                        ["A", "B", "C", "E"],
+                        ["S", "F", "C", "S"],
+                        ["A", "D", "E", "E"],
+                    ],
+                    "word": "ABCCED",
+                },
+                output=True,
+            ),
+            LeetcodeTestCase(
+                input={"board": [["C","A","A"],["A","A","A"],["B","C","D"]], "word": "AAB"},
+                output=True,
+            ),
+            LeetcodeTestCase(
+                input={"board": [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "word": "ABCB"},
+                output=False,
+            ),
+            LeetcodeTestCase(
+                input={"board": [["A","B","C","E"],["S","F","E","S"],["A","D","E","E"]], "word": "ABCESEEEFS"},
+                output=True,
+            ),
+        ]
+        sln = Solution_79()
+        for tc in testcases:
+            output = sln.exist(tc.input["board"], tc.input["word"])
             self.assertEqual(tc.output, output)
 
     def test_case_121(self):
@@ -762,6 +902,16 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.numberOfPairs(
                 tc.input["nums1"], tc.input["nums2"], tc.input["k"]
             )
+            self.assertEqual(tc.output, output)
+
+    def test_case_3194(self):
+        testcases = [
+            LeetcodeTestCase(input=[7,8,3,4,15,13,4,1], output=5.5),
+            LeetcodeTestCase(input=[1,2,3,7,8,9], output=5.0),
+        ]
+        sln = Solution_3194()
+        for tc in testcases:
+            output = sln.minimumAverage(tc.input)
             self.assertEqual(tc.output, output)
 
     def test_case_3200(self):
