@@ -18,6 +18,7 @@ from find_the_index_of_the_first_occurrence_in_a_string_28 import (
     Solution as Solution_28,
 )
 from substring_with_concatenation_of_all_words_30 import Solution as Solution_30
+from search_insert_position_35 import Solution as Solution_35
 from combination_sum_39 import Solution as Solution_39
 from trapping_rain_water_42 import Solution as Solution_42
 from permutations_46 import Solution as Solution_46
@@ -30,6 +31,7 @@ from insert_interval_57 import Solution as Solution_57
 from length_of_last_word_58 import Solution as Solution_58
 from simplify_path_71 import Solution as Solution_71
 from set_matrix_zeroes_73 import Solution as Solution_73
+from search_a_2d_matrix_74 import Solution as Solution_74
 from minimum_window_substring_76 import Solution as Solution_76
 from combinations_77 import Solution as Solution_77
 from word_search_79 import Solution as Solution_79
@@ -41,6 +43,7 @@ from longest_consecutive_sequence_128 import Solution as Solution_128
 from sort_list_148 import Solution as Solution_148, buildListNode_148
 from evaluate_reverse_polish_notation_150 import Solution as Solution_150
 from reverse_words_in_a_string_151 import Solution as Solution_151
+from find_peak_element_162 import Solution as Solution_162
 from majority_element_169 import Solution as Solution_169
 from happy_number_202 import Solution as Solution_202
 from isomorphic_strings_205 import Solution as Solution_205
@@ -267,6 +270,17 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.findSubstring(tc.input["s"], tc.input["words"])
             self.assertEqual(str(tc.output), str(output))
 
+    def test_case_35(self):
+        testcases = [
+            LeetcodeTestCase(input={"nums": [1, 3, 5, 6], "target": 5}, output=2),
+            LeetcodeTestCase(input={"nums": [1, 3, 5, 6], "target": 2}, output=1),
+            LeetcodeTestCase(input={"nums": [1, 3, 5, 6], "target": 7}, output=4),
+        ]
+        sln = Solution_35()
+        for tc in testcases:
+            output = sln.searchInsert(tc.input["nums"], tc.input["target"])
+            self.assertEqual(tc.output, output)
+
     def test_case_39(self):
         testcases = [
             LeetcodeTestCase(
@@ -450,6 +464,28 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             sln.setZeroes(tc.input)
             self.assertEqual(str(tc.output), str(tc.input))
+
+    def test_case_74(self):
+        testcases = [
+            LeetcodeTestCase(
+                input={
+                    "matrix": [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]],
+                    "target": 3,
+                },
+                output=True,
+            ),
+            LeetcodeTestCase(
+                input={
+                    "matrix": [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]],
+                    "target": 13,
+                },
+                output=False,
+            ),
+        ]
+        sln = Solution_74()
+        for tc in testcases:
+            output = sln.searchMatrix(tc.input["matrix"], tc.input["target"])
+            self.assertEqual(tc.output, output)
 
     def test_case_76(self):
         testcases = [
@@ -672,6 +708,18 @@ class Leetcode_testcases(unittest.TestCase):
         minStack.pop()
         self.assertEqual(minStack.top(), 0)  # 返回 0.
         self.assertEqual(minStack.getMin(), -2)  # 返回 -2.
+
+    def test_case_162(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input=[1,2,3,1], output=2),
+            LeetcodeTestCase(input=[1,2,1,3,5,6,4], output=5),  # output=1 or 5
+            LeetcodeTestCase(input=[1,2,3,4,5,6,7,8,9], output=8),
+            LeetcodeTestCase(input=[1,3,2,1], output=1),
+        ]
+        sln = Solution_162()
+        for tc in testcases:
+            output = sln.findPeakElement(tc.input)
+            self.assertEqual(tc.output, output)
 
     def test_case_169(self):
         testcases: list[LeetcodeTestCase] = [
