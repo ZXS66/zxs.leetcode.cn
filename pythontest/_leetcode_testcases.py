@@ -18,6 +18,10 @@ from find_the_index_of_the_first_occurrence_in_a_string_28 import (
     Solution as Solution_28,
 )
 from substring_with_concatenation_of_all_words_30 import Solution as Solution_30
+from search_in_rotated_sorted_array_33 import Solution as Solution_33
+from find_first_and_last_position_of_element_in_sorted_array_34 import (
+    Solution as Solution_34,
+)
 from search_insert_position_35 import Solution as Solution_35
 from combination_sum_39 import Solution as Solution_39
 from trapping_rain_water_42 import Solution as Solution_42
@@ -43,6 +47,7 @@ from longest_consecutive_sequence_128 import Solution as Solution_128
 from sort_list_148 import Solution as Solution_148, buildListNode_148
 from evaluate_reverse_polish_notation_150 import Solution as Solution_150
 from reverse_words_in_a_string_151 import Solution as Solution_151
+from find_minimum_in_rotated_sorted_array_153 import Solution as Solution_153
 from find_peak_element_162 import Solution as Solution_162
 from majority_element_169 import Solution as Solution_169
 from happy_number_202 import Solution as Solution_202
@@ -63,6 +68,7 @@ from minimum_genetic_mutation_433 import Solution as Solution_433
 from minimum_number_of_arrows_to_burst_balloons_452 import Solution as Solution_452
 from super_egg_drop_877 import Solution as Solution_877
 from smallest_range_i_908 import Solution as Solution_908
+from smallest_range_ii_910 import Solution as Solution_910
 from maximum_sum_circular_subarray_918 import Solution as Solution_918
 from distance_between_bus_stops_1184 import Solution as Solution_1184
 from egg_drop_with_2_eggs_and_n_floors_1884 import Solution as Solution_1884
@@ -269,6 +275,31 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.findSubstring(tc.input["s"], tc.input["words"])
             self.assertEqual(str(tc.output), str(output))
+
+
+    def test_case_33(self):
+        testcases = [
+            LeetcodeTestCase(input={"nums":[4,5,6,7,0,1,2], "target": 0}, output=4),
+            LeetcodeTestCase(input={"nums":[4,5,6,7,0,1,2], "target": 3}, output=-1),
+            LeetcodeTestCase(input={"nums":[1], "target": 0}, output=-1),
+        ]
+        sln = Solution_33()
+        for tc in testcases:
+            output = sln.search(tc.input['nums'],tc.input['target'])
+            self.assertEqual(tc.output, output)
+
+
+    def test_case_34(self):
+        testcases = [
+            LeetcodeTestCase(input={"nums":[5,7,7,8,8,10], "target": 8}, output=[3,4]),
+            LeetcodeTestCase(input={"nums":[5,7,7,8,8,10], "target": 6}, output=[-1,-1]),
+            LeetcodeTestCase(input={"nums":[], "target": 0}, output=[-1,-1]),
+        ]
+        sln = Solution_34()
+        for tc in testcases:
+            output = sln.searchRange(tc.input['nums'],tc.input['target'])
+            self.assertListEqual(tc.output,output)
+
 
     def test_case_35(self):
         testcases = [
@@ -699,6 +730,18 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.reverseWords(tc.input)
             self.assertEqual(tc.output, output)
 
+    def test_case_153(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input=[3, 4, 5, 1, 2], output=1),
+            LeetcodeTestCase(input=[4, 5, 6, 7, 0, 1, 2], output=0),
+            LeetcodeTestCase(input=[11, 13, 15, 17], output=11),
+        ]
+        sln = Solution_153()
+        for tc in testcases:
+            output = sln.findMin(tc.input)
+            self.assertEqual(tc.output, output)
+
+
     def test_case_155(self):
         minStack = MinStack()
         minStack.push(-2)
@@ -1067,6 +1110,19 @@ class Leetcode_testcases(unittest.TestCase):
         sln = Solution_908()
         for tc in testcases:
             output = sln.smallestRangeI(tc.input["nums"], tc.input["k"])
+            self.assertEqual(tc.output, output)
+
+    def test_case_910(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"nums": [1], "k": 0}, output=0),
+            LeetcodeTestCase(input={"nums": [0, 10], "k": 2}, output=6),
+            LeetcodeTestCase(input={"nums": [1, 3, 6], "k": 3}, output=3),
+            LeetcodeTestCase(input={"nums": [7, 8, 8], "k": 5}, output=1),
+            LeetcodeTestCase(input={"nums": [3,4,7,0], "k": 5}, output=7),
+        ]
+        sln = Solution_910()
+        for tc in testcases:
+            output = sln.smallestRangeII(tc.input["nums"], tc.input["k"])
             self.assertEqual(tc.output, output)
 
     def test_case_918(self):
