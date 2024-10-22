@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from min_stack_155 import MinStack
 
 from two_sum_1 import Solution as Solution_1
+from median_of_two_sorted_arrays_4 import Solution as Solution_4
 from integer_to_roman_12 import Solution as Solution_12
 from roman_to_integer_13 import Solution as Solution_13
 from longest_common_prefix_14 import Solution as Solution_14
@@ -55,6 +56,7 @@ from isomorphic_strings_205 import Solution as Solution_205
 from implement_trie_prefix_tree_208 import Trie
 from design_add_and_search_words_data_structure_211 import WordDictionary
 from word_search_ii_212 import Solution as Solution_212
+from kth_largest_element_in_an_array_215 import Solution as Solution_215
 from contains_duplicate_ii_219 import Solution as Solution_219
 from basic_calculator_224 import Solution as Solution_224
 from summary_ranges_228 import Solution as Solution_228
@@ -80,6 +82,7 @@ from node_with_highest_edge_score_2374 import Solution as Solution_2374
 from take_k_of_each_character_from_left_and_right_2516 import Solution as Solution_2516
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
 from find_the_number_of_good_pairs_ii_3164 import Solution as Solution_3164
+from count_pairs_that_form_a_complete_day_i_3184 import Solution as Solution_3184
 from minimum_operations_to_make_binary_array_elements_equal_to_one_3191 import (
     Solution as Solution_3191,
 )
@@ -112,6 +115,18 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.twoSum(tc.input["nums"], tc.input["target"])
             self.assertEqual(str(tc.output), str(output))
+
+    def test_case_4(self):
+        testcases = [
+            LeetcodeTestCase(input={"nums1": [1,3], "nums2": [2]}, output=2.0),
+            LeetcodeTestCase(input={"nums1": [1,2], "nums2": [3,4]}, output=2.5),
+            LeetcodeTestCase(input={"nums1": [], "nums2": [3,4]}, output=3.5),
+            LeetcodeTestCase(input={"nums1": [2], "nums2": []}, output=2.0),
+        ]
+        sln = Solution_4()
+        for tc in testcases:
+            output = sln.findMedianSortedArrays(tc.input["nums1"],tc.input['nums2'])
+            self.assertEqual(tc.output, output)
 
     def test_case_12(self):
         testcases = [
@@ -888,6 +903,19 @@ class Leetcode_testcases(unittest.TestCase):
             )
             self.assertEqual(len(tc.output), len(output))
 
+    def test_case_215(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"nums": [3, 2, 1, 5, 6, 4], "k": 2}, output=5),
+            LeetcodeTestCase(input={"nums": [3, 2, 3, 1, 2, 4, 5, 5, 6], "k": 4}, output=4),
+        ]
+        sln = Solution_215()
+        for tc in testcases:
+            output = sln.findKthLargest(
+                nums=tc.input["nums"],
+                k=tc.input["k"],
+            )
+            self.assertEqual(tc.output, output)
+
     def test_case_219(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input={"nums": [1, 2, 3, 1], "k": 3}, output=True),
@@ -1259,6 +1287,18 @@ class Leetcode_testcases(unittest.TestCase):
                 tc.input["nums1"], tc.input["nums2"], tc.input["k"]
             )
             self.assertEqual(tc.output, output)
+
+    def test_case_3184(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input=[12,12,30,24,24], output=2),
+            LeetcodeTestCase(input=[72,48,24,3], output=3),
+            LeetcodeTestCase(input=[21,19,3], output=1),
+        ]
+        sln = Solution_3184()
+        for tc in testcases:
+            output = sln.countCompleteDayPairs(tc.input)
+            self.assertEqual(tc.output, output)
+        
 
     def test_case_3191(self):
         testcases: list[LeetcodeTestCase] = [
