@@ -118,14 +118,14 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_4(self):
         testcases = [
-            LeetcodeTestCase(input={"nums1": [1,3], "nums2": [2]}, output=2.0),
-            LeetcodeTestCase(input={"nums1": [1,2], "nums2": [3,4]}, output=2.5),
-            LeetcodeTestCase(input={"nums1": [], "nums2": [3,4]}, output=3.5),
+            LeetcodeTestCase(input={"nums1": [1, 3], "nums2": [2]}, output=2.0),
+            LeetcodeTestCase(input={"nums1": [1, 2], "nums2": [3, 4]}, output=2.5),
+            LeetcodeTestCase(input={"nums1": [], "nums2": [3, 4]}, output=3.5),
             LeetcodeTestCase(input={"nums1": [2], "nums2": []}, output=2.0),
         ]
         sln = Solution_4()
         for tc in testcases:
-            output = sln.findMedianSortedArrays(tc.input["nums1"],tc.input['nums2'])
+            output = sln.findMedianSortedArrays(tc.input["nums1"], tc.input["nums2"])
             self.assertEqual(tc.output, output)
 
     def test_case_12(self):
@@ -291,30 +291,35 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.findSubstring(tc.input["s"], tc.input["words"])
             self.assertEqual(str(tc.output), str(output))
 
-
     def test_case_33(self):
         testcases = [
-            LeetcodeTestCase(input={"nums":[4,5,6,7,0,1,2], "target": 0}, output=4),
-            LeetcodeTestCase(input={"nums":[4,5,6,7,0,1,2], "target": 3}, output=-1),
-            LeetcodeTestCase(input={"nums":[1], "target": 0}, output=-1),
+            LeetcodeTestCase(
+                input={"nums": [4, 5, 6, 7, 0, 1, 2], "target": 0}, output=4
+            ),
+            LeetcodeTestCase(
+                input={"nums": [4, 5, 6, 7, 0, 1, 2], "target": 3}, output=-1
+            ),
+            LeetcodeTestCase(input={"nums": [1], "target": 0}, output=-1),
         ]
         sln = Solution_33()
         for tc in testcases:
-            output = sln.search(tc.input['nums'],tc.input['target'])
+            output = sln.search(tc.input["nums"], tc.input["target"])
             self.assertEqual(tc.output, output)
-
 
     def test_case_34(self):
         testcases = [
-            LeetcodeTestCase(input={"nums":[5,7,7,8,8,10], "target": 8}, output=[3,4]),
-            LeetcodeTestCase(input={"nums":[5,7,7,8,8,10], "target": 6}, output=[-1,-1]),
-            LeetcodeTestCase(input={"nums":[], "target": 0}, output=[-1,-1]),
+            LeetcodeTestCase(
+                input={"nums": [5, 7, 7, 8, 8, 10], "target": 8}, output=[3, 4]
+            ),
+            LeetcodeTestCase(
+                input={"nums": [5, 7, 7, 8, 8, 10], "target": 6}, output=[-1, -1]
+            ),
+            LeetcodeTestCase(input={"nums": [], "target": 0}, output=[-1, -1]),
         ]
         sln = Solution_34()
         for tc in testcases:
-            output = sln.searchRange(tc.input['nums'],tc.input['target'])
-            self.assertListEqual(tc.output,output)
-
+            output = sln.searchRange(tc.input["nums"], tc.input["target"])
+            self.assertListEqual(tc.output, output)
 
     def test_case_35(self):
         testcases = [
@@ -756,7 +761,6 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.findMin(tc.input)
             self.assertEqual(tc.output, output)
 
-
     def test_case_155(self):
         minStack = MinStack()
         minStack.push(-2)
@@ -769,10 +773,10 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_162(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input=[1,2,3,1], output=2),
-            LeetcodeTestCase(input=[1,2,1,3,5,6,4], output=5),  # output=1 or 5
-            LeetcodeTestCase(input=[1,2,3,4,5,6,7,8,9], output=8),
-            LeetcodeTestCase(input=[1,3,2,1], output=1),
+            LeetcodeTestCase(input=[1, 2, 3, 1], output=2),
+            LeetcodeTestCase(input=[1, 2, 1, 3, 5, 6, 4], output=5),  # output=1 or 5
+            LeetcodeTestCase(input=[1, 2, 3, 4, 5, 6, 7, 8, 9], output=8),
+            LeetcodeTestCase(input=[1, 3, 2, 1], output=1),
         ]
         sln = Solution_162()
         for tc in testcases:
@@ -906,7 +910,9 @@ class Leetcode_testcases(unittest.TestCase):
     def test_case_215(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input={"nums": [3, 2, 1, 5, 6, 4], "k": 2}, output=5),
-            LeetcodeTestCase(input={"nums": [3, 2, 3, 1, 2, 4, 5, 5, 6], "k": 4}, output=4),
+            LeetcodeTestCase(
+                input={"nums": [3, 2, 3, 1, 2, 4, 5, 5, 6], "k": 4}, output=4
+            ),
         ]
         sln = Solution_215()
         for tc in testcases:
@@ -1146,7 +1152,7 @@ class Leetcode_testcases(unittest.TestCase):
             LeetcodeTestCase(input={"nums": [0, 10], "k": 2}, output=6),
             LeetcodeTestCase(input={"nums": [1, 3, 6], "k": 3}, output=3),
             LeetcodeTestCase(input={"nums": [7, 8, 8], "k": 5}, output=1),
-            LeetcodeTestCase(input={"nums": [3,4,7,0], "k": 5}, output=7),
+            LeetcodeTestCase(input={"nums": [3, 4, 7, 0], "k": 5}, output=7),
         ]
         sln = Solution_910()
         for tc in testcases:
@@ -1290,15 +1296,14 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_3184(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input=[12,12,30,24,24], output=2),
-            LeetcodeTestCase(input=[72,48,24,3], output=3),
-            LeetcodeTestCase(input=[21,19,3], output=1),
+            LeetcodeTestCase(input=[12, 12, 30, 24, 24], output=2),
+            LeetcodeTestCase(input=[72, 48, 24, 3], output=3),
+            LeetcodeTestCase(input=[21, 19, 3], output=1),
         ]
         sln = Solution_3184()
         for tc in testcases:
             output = sln.countCompleteDayPairs(tc.input)
             self.assertEqual(tc.output, output)
-        
 
     def test_case_3191(self):
         testcases: list[LeetcodeTestCase] = [
