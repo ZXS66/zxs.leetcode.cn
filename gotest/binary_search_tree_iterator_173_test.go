@@ -19,7 +19,7 @@ type BSTIterator struct {
 	cur   *TreeNode
 }
 
-func Constructor(root *TreeNode) BSTIterator {
+func BSTIteratorConstructor(root *TreeNode) BSTIterator {
 	return BSTIterator{cur: root}
 }
 
@@ -49,8 +49,7 @@ func Test_173(t *testing.T) {
 			Right: &TreeNode{Val: 20},
 		},
 	}
-	// bSTIterator := Constructor(root)
-	bSTIterator := Constructor(root)
+	bSTIterator := BSTIteratorConstructor(root)
 	if output1 := bSTIterator.Next(); output1 != 3 {
 		t.Error("Test = ", output1, "But Excepted = ", 3)
 	}
