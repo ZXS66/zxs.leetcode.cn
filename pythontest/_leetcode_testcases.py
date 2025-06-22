@@ -81,6 +81,7 @@ from number_of_excellent_pairs_2354 import Solution as Solution_2354
 from node_with_highest_edge_score_2374 import Solution as Solution_2374
 from take_k_of_each_character_from_left_and_right_2516 import Solution as Solution_2516
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
+from minimum_deletions_to_make_string_k_special_3085 import Solution as Solution_3085
 from find_the_number_of_good_pairs_ii_3164 import Solution as Solution_3164
 from count_pairs_that_form_a_complete_day_i_3184 import Solution as Solution_3184
 from minimum_operations_to_make_binary_array_elements_equal_to_one_3191 import (
@@ -1291,6 +1292,25 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.numberOfPairs(
                 tc.input["nums1"], tc.input["nums2"], tc.input["k"]
+            )
+            self.assertEqual(tc.output, output)
+
+    def test_case_3085(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(
+                input={"word": "aabcaba", "k": 0}, output=3
+            ),
+            LeetcodeTestCase(
+                input={"word": "dabdcbdcdcd", "k": 2}, output=2
+            ),
+            LeetcodeTestCase(
+                input={"word": "aaabaaa", "k": 2}, output=1
+            ),
+        ]
+        sln = Solution_3085()
+        for tc in testcases:
+            output = sln.minimumDeletions(
+                tc.input["word"], tc.input["k"]
             )
             self.assertEqual(tc.output, output)
 

@@ -100,4 +100,13 @@ public static class LeetcodeHelper
         }
         return String.Join(",", nodes.Select(n => n.HasValue ? n.Value.ToString() : "null"));
     }
+
+    public static string Array2String<T>(T[] arr)
+    {
+        if (arr == null || arr.Length == 0)
+        {
+            return String.Empty;
+        }
+        return System.Text.Json.JsonSerializer.Serialize(arr);
+    }
 }
