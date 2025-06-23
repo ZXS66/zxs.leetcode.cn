@@ -68,6 +68,7 @@ from is_subsequence_392 import Solution as Solution_392
 from construct_quad_tree_427 import Solution as Solution_427
 from minimum_genetic_mutation_433 import Solution as Solution_433
 from minimum_number_of_arrows_to_burst_balloons_452 import Solution as Solution_452
+from subarray_sum_equals_k_560 import Solution as Solution_560
 from super_egg_drop_877 import Solution as Solution_877
 from smallest_range_i_908 import Solution as Solution_908
 from smallest_range_ii_910 import Solution as Solution_910
@@ -77,6 +78,7 @@ from egg_drop_with_2_eggs_and_n_floors_1884 import Solution as Solution_1884
 from time_needed_to_buy_tickets_2073 import Solution as Solution_2073
 from minimum_time_to_complete_trips_2187 import Solution as Solution_2187
 from maximize_number_of_subsequences_in_a_string_2207 import Solution as Solution_2207
+from find_all_k_distant_indices_in_an_array_2200 import Solution as Solution_2200
 from number_of_excellent_pairs_2354 import Solution as Solution_2354
 from node_with_highest_edge_score_2374 import Solution as Solution_2374
 from take_k_of_each_character_from_left_and_right_2516 import Solution as Solution_2516
@@ -1122,6 +1124,16 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.findMinArrowShots(points=tc.input)
             self.assertEqual(tc.output, output)
 
+    def test_case_560(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"nums":[1,1,1],"k":2}, output=2),
+            LeetcodeTestCase(input={"nums":[1,2,3],"k":3}, output=2),
+        ]
+        sln = Solution_560()
+        for tc in testcases:
+            output = sln.subarraySum(tc.input["nums"], tc.input["k"])
+            self.assertEqual(tc.output, output)
+
     def test_case_877(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input={"k": 1, "n": 2}, output=2),
@@ -1228,6 +1240,16 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.minimumTime(tc.input["time"], tc.input["totalTrips"])
             self.assertEqual(tc.output, output)
+
+    def test_case_2200(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"nums": [3,4,9,1,3,9,5], "key": 9, "k": 1}, output=[1,2,3,4,5,6]),
+            LeetcodeTestCase(input={"nums": [2,2,2,2,2], "key": 2, "k": 2}, output=[0,1,2,3,4]),
+        ]
+        sln = Solution_2200()
+        for tc in testcases:
+            output = sln.findKDistantIndices(tc.input["nums"], tc.input["key"], tc.input["k"])
+            self.assertEqual(str(tc.output), str(output))
 
     def test_case_2207(self):
         testcases: list[LeetcodeTestCase] = [
