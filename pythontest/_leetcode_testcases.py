@@ -76,6 +76,7 @@ from maximum_sum_circular_subarray_918 import Solution as Solution_918
 from distance_between_bus_stops_1184 import Solution as Solution_1184
 from egg_drop_with_2_eggs_and_n_floors_1884 import Solution as Solution_1884
 from time_needed_to_buy_tickets_2073 import Solution as Solution_2073
+from kth_smallest_product_of_two_sorted_arrays_2040 import Solution as Solution_2040
 from minimum_time_to_complete_trips_2187 import Solution as Solution_2187
 from maximize_number_of_subsequences_in_a_string_2207 import Solution as Solution_2207
 from find_all_k_distant_indices_in_an_array_2200 import Solution as Solution_2200
@@ -1126,8 +1127,8 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_560(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input={"nums":[1,1,1],"k":2}, output=2),
-            LeetcodeTestCase(input={"nums":[1,2,3],"k":3}, output=2),
+            LeetcodeTestCase(input={"nums": [1, 1, 1], "k": 2}, output=2),
+            LeetcodeTestCase(input={"nums": [1, 2, 3], "k": 3}, output=2),
         ]
         sln = Solution_560()
         for tc in testcases:
@@ -1218,6 +1219,28 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.twoEggDrop(tc.input)
             self.assertEqual(tc.output, output)
 
+    def test_case_2040(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(
+                input={"nums1": [2, 5], "nums2": [3, 4], "k": 2}, output=8
+            ),
+            LeetcodeTestCase(
+                input={"nums1": [-4, -2, 0, 3], "nums2": [2, 4], "k": 6}, output=0
+            ),
+            LeetcodeTestCase(
+                input={"nums1": [-2, -1, 0, 1, 2], "nums2": [-3, -1, 2, 4, 5], "k": 3},
+                output=-6,
+            ),
+        ]
+        sln = Solution_2040()
+        for tc in testcases:
+            output = sln.kthSmallestProduct(
+                tc.input["nums1"],
+                tc.input["nums2"],
+                tc.input["k"],
+            )
+            self.assertEqual(tc.output, output)
+
     def test_case_2073(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input={"tickets": [2, 3, 2], "k": 2}, output=6),
@@ -1243,12 +1266,20 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_2200(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input={"nums": [3,4,9,1,3,9,5], "key": 9, "k": 1}, output=[1,2,3,4,5,6]),
-            LeetcodeTestCase(input={"nums": [2,2,2,2,2], "key": 2, "k": 2}, output=[0,1,2,3,4]),
+            LeetcodeTestCase(
+                input={"nums": [3, 4, 9, 1, 3, 9, 5], "key": 9, "k": 1},
+                output=[1, 2, 3, 4, 5, 6],
+            ),
+            LeetcodeTestCase(
+                input={"nums": [2, 2, 2, 2, 2], "key": 2, "k": 2},
+                output=[0, 1, 2, 3, 4],
+            ),
         ]
         sln = Solution_2200()
         for tc in testcases:
-            output = sln.findKDistantIndices(tc.input["nums"], tc.input["key"], tc.input["k"])
+            output = sln.findKDistantIndices(
+                tc.input["nums"], tc.input["key"], tc.input["k"]
+            )
             self.assertEqual(str(tc.output), str(output))
 
     def test_case_2207(self):
@@ -1319,21 +1350,13 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_3085(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(
-                input={"word": "aabcaba", "k": 0}, output=3
-            ),
-            LeetcodeTestCase(
-                input={"word": "dabdcbdcdcd", "k": 2}, output=2
-            ),
-            LeetcodeTestCase(
-                input={"word": "aaabaaa", "k": 2}, output=1
-            ),
+            LeetcodeTestCase(input={"word": "aabcaba", "k": 0}, output=3),
+            LeetcodeTestCase(input={"word": "dabdcbdcdcd", "k": 2}, output=2),
+            LeetcodeTestCase(input={"word": "aaabaaa", "k": 2}, output=1),
         ]
         sln = Solution_3085()
         for tc in testcases:
-            output = sln.minimumDeletions(
-                tc.input["word"], tc.input["k"]
-            )
+            output = sln.minimumDeletions(tc.input["word"], tc.input["k"])
             self.assertEqual(tc.output, output)
 
     def test_case_3184(self):
