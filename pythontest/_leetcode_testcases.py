@@ -1,5 +1,4 @@
 import unittest
-import json
 from dataclasses import dataclass
 from min_stack_155 import MinStack
 
@@ -25,6 +24,7 @@ from find_first_and_last_position_of_element_in_sorted_array_34 import (
 )
 from search_insert_position_35 import Solution as Solution_35
 from combination_sum_39 import Solution as Solution_39
+from first_missing_positive_41 import Solution as Solution_41
 from trapping_rain_water_42 import Solution as Solution_42
 from permutations_46 import Solution as Solution_46
 from group_anagrams_49 import Solution as Solution_49
@@ -63,12 +63,14 @@ from summary_ranges_228 import Solution as Solution_228
 from valid_anagram_242 import Solution as Solution_242
 from game_of_life_289 import Solution as Solution_289
 from word_pattern_290 import Solution as Solution_290
+from range_sum_query_immutable_303 import NumArray
 from ransom_note_383 import Solution as Solution_383
 from is_subsequence_392 import Solution as Solution_392
 from construct_quad_tree_427 import Solution as Solution_427
 from minimum_genetic_mutation_433 import Solution as Solution_433
 from minimum_number_of_arrows_to_burst_balloons_452 import Solution as Solution_452
 from subarray_sum_equals_k_560 import Solution as Solution_560
+from longest_harmonious_subsequence_594 import Solution as Solution_594
 from super_egg_drop_877 import Solution as Solution_877
 from smallest_range_i_908 import Solution as Solution_908
 from smallest_range_ii_910 import Solution as Solution_910
@@ -77,6 +79,9 @@ from distance_between_bus_stops_1184 import Solution as Solution_1184
 from egg_drop_with_2_eggs_and_n_floors_1884 import Solution as Solution_1884
 from time_needed_to_buy_tickets_2073 import Solution as Solution_2073
 from kth_smallest_product_of_two_sorted_arrays_2040 import Solution as Solution_2040
+from find_subsequence_of_length_k_with_the_largest_sum_2099 import (
+    Solution as Solution_2099,
+)
 from minimum_time_to_complete_trips_2187 import Solution as Solution_2187
 from maximize_number_of_subsequences_in_a_string_2207 import Solution as Solution_2207
 from find_all_k_distant_indices_in_an_array_2200 import Solution as Solution_2200
@@ -351,6 +356,18 @@ class Leetcode_testcases(unittest.TestCase):
         for tc in testcases:
             output = sln.combinationSum(tc.input["candidates"], tc.input["target"])
             self.assertEqual(len(tc.output), len(output))
+
+    def test_case_41(self):
+        testcases = [
+            LeetcodeTestCase(input=[1, 2, 0], output=3),
+            LeetcodeTestCase(input=[3, 4, -1, 1], output=2),
+            LeetcodeTestCase(input=[7, 8, 9, 11, 12], output=1),
+            LeetcodeTestCase(input=[2, 2], output=1),
+        ]
+        sln = Solution_41()
+        for tc in testcases:
+            output = sln.firstMissingPositive(tc.input)
+            self.assertEqual(tc.output, output)
 
     def test_case_42(self):
         testcases = [
@@ -957,16 +974,15 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_228(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input=[0, 1, 2, 4, 5, 7], output=r'["0->2", "4->5", "7"]'),
+            LeetcodeTestCase(input=[0, 1, 2, 4, 5, 7], output=["0->2", "4->5", "7"]),
             LeetcodeTestCase(
-                input=[0, 2, 3, 4, 6, 8, 9], output='["0", "2->4", "6", "8->9"]'
+                input=[0, 2, 3, 4, 6, 8, 9], output=["0", "2->4", "6", "8->9"]
             ),
         ]
         sln = Solution_228()
         for tc in testcases:
             output = sln.summaryRanges(tc.input)
-            output = json.dumps(output)
-            self.assertEqual(tc.output, output)
+            self.assertAlmostEqual(tc.output, output)
 
     def test_case_242(self):
         testcases: list[LeetcodeTestCase] = [
@@ -1013,6 +1029,16 @@ class Leetcode_testcases(unittest.TestCase):
                 s=tc.input["s"],
             )
             self.assertEqual(tc.output, output)
+
+    def test_case_303(self):
+        nArray = NumArray([-2, 0, 3, -5, 2, -1])
+        self.assertEqual(nArray.sumRange(0, 2), 1)  # sum of nums[0..2] = -2 + 0 + 3 = 1
+        self.assertEqual(
+            nArray.sumRange(2, 5), -1
+        )  # sum of nums[2..5] = 3 + -5 + 2 + -1
+        self.assertEqual(
+            nArray.sumRange(0, 5), -3
+        )  # sum of nums[0..5] = -2 + 0 + 3 + -5 + 2 + -1 = -3
 
     def test_case_383(self):
         testcases: list[LeetcodeTestCase] = [
@@ -1135,6 +1161,17 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.subarraySum(tc.input["nums"], tc.input["k"])
             self.assertEqual(tc.output, output)
 
+    def test_case_594(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"nums": [1,3,2,2,5,2,3,7]}, output=5),
+            LeetcodeTestCase(input={"nums": [1,2,3,4]}, output=2),
+            LeetcodeTestCase(input={"nums": [1,1,1,1]}, output=0),
+        ]
+        sln = Solution_594()
+        for tc in testcases:
+            output = sln.findLHS(tc.input["nums"])
+            self.assertEqual(tc.output, output)
+
     def test_case_877(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input={"k": 1, "n": 2}, output=2),
@@ -1240,6 +1277,20 @@ class Leetcode_testcases(unittest.TestCase):
                 tc.input["k"],
             )
             self.assertEqual(tc.output, output)
+
+    def test_case_2099(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"nums": [2, 1, 3, 3], "k": 2}, output=[3, 3]),
+            LeetcodeTestCase(input={"nums": [-1, -2, 3, 4], "k": 3}, output=[-1, 3, 4]),
+            LeetcodeTestCase(input={"nums": [3, 4, 3, 3], "k": 2}, output=[3, 4]),
+        ]
+        sln = Solution_2099()
+        for tc in testcases:
+            output = sln.maxSubsequence(
+                tc.input["nums"],
+                tc.input["k"],
+            )
+            self.assertAlmostEqual(tc.output, output)
 
     def test_case_2073(self):
         testcases: list[LeetcodeTestCase] = [
