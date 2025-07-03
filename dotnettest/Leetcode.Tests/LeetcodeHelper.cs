@@ -29,7 +29,7 @@ public static class LeetcodeHelper
         return $"[{string.Join(",", values)}]";
     }
     /// <summary>create <seealso cref="TreeNode"/> via list of integer number</summary>
-    /// <param name="arr"></param>
+    /// <param name="arr">按完全二叉树顺序，从上往下，从左往右遍历（如不存在，则为null）</param>
     /// <returns></returns>
     public static TreeNode CreateTree(int?[] arr)
     {
@@ -66,7 +66,7 @@ public static class LeetcodeHelper
     }
     /// <summary>parse <see cref="TreeNode"/> as string</summary>
     /// <param name="root"></param>
-    /// <returns></returns>
+    /// <returns>按完全二叉树顺序，从上往下，从左往右遍历（如不存在，则为null）</returns>
     public static string TreeToString(TreeNode root)
     {
         if (root == null)
