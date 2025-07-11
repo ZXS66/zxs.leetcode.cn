@@ -37,6 +37,7 @@ from length_of_last_word_58 import Solution as Solution_58
 from simplify_path_71 import Solution as Solution_71
 from set_matrix_zeroes_73 import Solution as Solution_73
 from search_a_2d_matrix_74 import Solution as Solution_74
+from sort_colors_75 import Solution as Solution_75
 from minimum_window_substring_76 import Solution as Solution_76
 from combinations_77 import Solution as Solution_77
 from subsets_78 import Solution as Solution_78
@@ -84,6 +85,7 @@ from smallest_range_i_908 import Solution as Solution_908
 from smallest_range_ii_910 import Solution as Solution_910
 from maximum_sum_circular_subarray_918 import Solution as Solution_918
 from rotting_oranges_994 import Solution as Solution_994
+from longest_common_subsequence_1143 import Solution as Solution_1143
 from distance_between_bus_stops_1184 import Solution as Solution_1184
 from find_lucky_integer_in_an_array_1394 import Solution as Solution_1394
 from egg_drop_with_2_eggs_and_n_floors_1884 import Solution as Solution_1884
@@ -101,6 +103,7 @@ from take_k_of_each_character_from_left_and_right_2516 import Solution as Soluti
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
 from minimum_deletions_to_make_string_k_special_3085 import Solution as Solution_3085
 from find_the_number_of_good_pairs_ii_3164 import Solution as Solution_3164
+from count_days_without_meetings_3169 import Solution as Solution_3169
 from count_pairs_that_form_a_complete_day_i_3184 import Solution as Solution_3184
 from minimum_operations_to_make_binary_array_elements_equal_to_one_3191 import (
     Solution as Solution_3191,
@@ -114,6 +117,7 @@ from minimum_average_of_smallest_and_largest_elements_3194 import (
 from maximum_height_of_a_triangle_3200 import Solution as Solution_3200
 from find_the_k_th_character_in_string_game_i_3304 import Solution as Solution_3304
 from find_the_k_th_character_in_string_game_ii_3307 import Solution as Solution_3307
+from reschedule_meetings_for_maximum_free_time_ii_3440 import Solution as Solution_3440
 
 
 @dataclass
@@ -571,6 +575,19 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.searchMatrix(tc.input["matrix"], tc.input["target"])
             self.assertEqual(tc.output, output)
 
+    def test_case_75(self):
+        testcases = [
+            LeetcodeTestCase(input=[2, 0, 2, 1, 1, 0], output=[0, 0, 1, 1, 2, 2]),
+            LeetcodeTestCase(input=[2, 0, 1], output=[0, 1, 2]),
+            LeetcodeTestCase(input=[0], output=[0]),
+            LeetcodeTestCase(input=[1], output=[1]),
+        ]
+        sln = Solution_75()
+        for tc in testcases:
+            sln.sortColors(tc.input)
+            self.assertEqual(str(tc.output), str(tc.input))
+            self.assertAlmostEqual(tc.output, tc.input)
+
     def test_case_76(self):
         testcases = [
             LeetcodeTestCase(input={"s": "ADOBECODEBANC", "t": "ABC"}, output="BANC"),
@@ -815,8 +832,8 @@ class Leetcode_testcases(unittest.TestCase):
             LeetcodeTestCase(input=[-2, 0, -1], output=0),
             LeetcodeTestCase(input=[-2, 3, -4], output=24),
             LeetcodeTestCase(input=[-1, -2, -9, -6], output=108),
-            LeetcodeTestCase(input=[3,-1,4], output=4),
-            LeetcodeTestCase(input=[2,-5,-2,-4,3], output=24),
+            LeetcodeTestCase(input=[3, -1, 4], output=4),
+            LeetcodeTestCase(input=[2, -5, -2, -4, 3], output=24),
         ]
         sln = Solution_152()
         for tc in testcases:
@@ -1349,6 +1366,19 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.orangesRotting(tc.input["grid"])
             self.assertEqual(tc.output, output)
 
+    def test_case_1143(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"text1": "abcde", "text2": "ace"}, output=3),
+            LeetcodeTestCase(input={"text1": "abc", "text2": "abc"}, output=3),
+            LeetcodeTestCase(input={"text1": "abc", "text2": "def"}, output=0),
+        ]
+        sln = Solution_1143()
+        for tc in testcases:
+            output = sln.longestCommonSubsequence(
+                text1=tc.input["text1"], text2=tc.input["text2"]
+            )
+            self.assertEqual(tc.output, output)
+
     def test_case_1184(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(
@@ -1375,11 +1405,11 @@ class Leetcode_testcases(unittest.TestCase):
 
     def test_case_1394(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input=[2,2,3,4], output=2),
-            LeetcodeTestCase(input=[1,2,2,3,3,3], output=3),
-            LeetcodeTestCase(input=[2,2,2,3,3], output=-1),
+            LeetcodeTestCase(input=[2, 2, 3, 4], output=2),
+            LeetcodeTestCase(input=[1, 2, 2, 3, 3, 3], output=3),
+            LeetcodeTestCase(input=[2, 2, 2, 3, 3], output=-1),
             LeetcodeTestCase(input=[5], output=-1),
-            LeetcodeTestCase(input=[7,7,7,7,7,7,7], output=7),
+            LeetcodeTestCase(input=[7, 7, 7, 7, 7, 7, 7], output=7),
         ]
         sln = Solution_1394()
         for tc in testcases:
@@ -1523,6 +1553,17 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.numberOfPoints(tc.input)
             self.assertEqual(tc.output, output)
 
+    def test_case_3085(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"word": "aabcaba", "k": 0}, output=3),
+            LeetcodeTestCase(input={"word": "dabdcbdcdcd", "k": 2}, output=2),
+            LeetcodeTestCase(input={"word": "aaabaaa", "k": 2}, output=1),
+        ]
+        sln = Solution_3085()
+        for tc in testcases:
+            output = sln.minimumDeletions(tc.input["word"], tc.input["k"])
+            self.assertEqual(tc.output, output)
+
     def test_case_3164(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(
@@ -1539,15 +1580,17 @@ class Leetcode_testcases(unittest.TestCase):
             )
             self.assertEqual(tc.output, output)
 
-    def test_case_3085(self):
+    def test_case_3169(self):
         testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input={"word": "aabcaba", "k": 0}, output=3),
-            LeetcodeTestCase(input={"word": "dabdcbdcdcd", "k": 2}, output=2),
-            LeetcodeTestCase(input={"word": "aaabaaa", "k": 2}, output=1),
+            LeetcodeTestCase(
+                input={"days": 10, "meetings": [[5, 7], [1, 3], [9, 10]]}, output=2
+            ),
+            LeetcodeTestCase(input={"days": 5, "meetings": [[2, 4], [1, 3]]}, output=1),
+            LeetcodeTestCase(input={"days": 6, "meetings": [[1, 6]]}, output=0),
         ]
-        sln = Solution_3085()
+        sln = Solution_3169()
         for tc in testcases:
-            output = sln.minimumDeletions(tc.input["word"], tc.input["k"])
+            output = sln.countDays(tc.input["days"], tc.input["meetings"])
             self.assertEqual(tc.output, output)
 
     def test_case_3184(self):
@@ -1618,13 +1661,161 @@ class Leetcode_testcases(unittest.TestCase):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input={"k": 5, "operations": [0, 0, 0]}, output="a"),
             LeetcodeTestCase(input={"k": 10, "operations": [0, 1, 0, 1]}, output="b"),
-            LeetcodeTestCase(input={"k": 33031255, "operations": [0,1,0,0,1,1,1,0,1,0,1,1,1,0,0,1,0,0,1,1,1,1,0,1,1]}, output="j"),
-            LeetcodeTestCase(input={"k": 13610138, "operations": [0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,1]}, output="e"),
-            LeetcodeTestCase(input={"k": 4685106, "operations": [0,1,1,0,1,0,0,1,0,0,0,1,1,0,1,0,0,1,1,0,0,0,0,1,0]}, output="g"),
+            LeetcodeTestCase(
+                input={
+                    "k": 33031255,
+                    "operations": [
+                        0,
+                        1,
+                        0,
+                        0,
+                        1,
+                        1,
+                        1,
+                        0,
+                        1,
+                        0,
+                        1,
+                        1,
+                        1,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        1,
+                        1,
+                        1,
+                        1,
+                        0,
+                        1,
+                        1,
+                    ],
+                },
+                output="j",
+            ),
+            LeetcodeTestCase(
+                input={
+                    "k": 13610138,
+                    "operations": [
+                        0,
+                        1,
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        1,
+                    ],
+                },
+                output="e",
+            ),
+            LeetcodeTestCase(
+                input={
+                    "k": 4685106,
+                    "operations": [
+                        0,
+                        1,
+                        1,
+                        0,
+                        1,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        1,
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                    ],
+                },
+                output="g",
+            ),
         ]
         sln = Solution_3307()
         for tc in testcases:
-            output = sln.kthCharacter(tc.input['k'], tc.input['operations'])
+            output = sln.kthCharacter(tc.input["k"], tc.input["operations"])
+            self.assertEqual(tc.output, output)
+
+    def test_case_3440(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(
+                input={
+                    "eventTime": 5,
+                    "startTime": [1, 3],
+                    "endTime": [2, 5],
+                },
+                output=2,
+            ),
+            LeetcodeTestCase(
+                input={
+                    "eventTime": 10,
+                    "startTime": [0, 7, 9],
+                    "endTime": [1, 8, 10],
+                },
+                output=7,
+            ),
+            LeetcodeTestCase(
+                input={
+                    "eventTime": 10,
+                    "startTime": [0, 3, 7, 9],
+                    "endTime": [1, 4, 8, 10],
+                },
+                output=6,
+            ),
+            LeetcodeTestCase(
+                input={
+                    "eventTime": 5,
+                    "startTime": [0, 1, 2, 3, 4],
+                    "endTime": [1, 2, 3, 4, 5],
+                },
+                output=0,
+            ),
+            LeetcodeTestCase(
+                input={
+                    "eventTime": 41,
+                    "startTime": [17, 24],
+                    "endTime": [19, 25],
+                },
+                output=24,
+            ),
+        ]
+        sln = Solution_3440()
+        for tc in testcases:
+            output = sln.maxFreeTime(
+                tc.input["eventTime"],
+                tc.input["startTime"],
+                tc.input["endTime"],
+            )
             self.assertEqual(tc.output, output)
 
 
