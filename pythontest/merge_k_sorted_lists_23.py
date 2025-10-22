@@ -2,15 +2,10 @@
 
 from typing import List, Optional
 
-
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val: int = 0, next: Optional["ListNode"] = None):
-        self.val = val
-        self.next = next
+from _models import ListNode
 
 
-def buildListNode(nums: list[int]) -> ListNode:
+def buildListNode(nums: list[int]) -> Optional[ListNode]:
     if nums is None or len(nums) == 0:
         return None
     else:
@@ -44,7 +39,7 @@ class Solution:
             if minIdx == -1:
                 return None
             minNode = lists[minIdx]
-            if minNode.next is not None:
+            if minNode is not None and minNode.next is not None:
                 # 找到链表下一节点
                 # 更新 pointers[minIdx] 为当前节点 (minNode) 的下一节点
                 nextNode = minNode.next
@@ -64,8 +59,9 @@ class Solution:
         # 循环，直到 pointers 为空
         while True:
             minNode = pop_min()
-            curr.next = minNode
-            curr = curr.next
+            if curr is not None:
+                curr.next = minNode
+                curr = curr.next
             if minNode is None:
                 break
 

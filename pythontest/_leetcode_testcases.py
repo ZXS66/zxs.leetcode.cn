@@ -1,5 +1,9 @@
+from typing import Any, List
 import unittest
 from dataclasses import dataclass
+
+from _models import ListNode, TreeNode
+from _utils import build_tree_from_preorder_list
 from min_stack_155 import MinStack
 
 from two_sum_1 import Solution as Solution_1
@@ -48,6 +52,7 @@ from best_time_to_buy_and_sell_stock_121 import Solution as Solution_121
 from valid_palindrome_125 import Solution as Solution_125
 from word_ladder_127 import Solution as Solution_127
 from longest_consecutive_sequence_128 import Solution as Solution_128
+from binary_tree_preorder_traversal_144 import Solution as Solution_144
 from sort_list_148 import Solution as Solution_148, buildListNode_148
 from evaluate_reverse_polish_notation_150 import Solution as Solution_150
 from reverse_words_in_a_string_151 import Solution as Solution_151
@@ -99,6 +104,7 @@ from maximize_number_of_subsequences_in_a_string_2207 import Solution as Solutio
 from find_all_k_distant_indices_in_an_array_2200 import Solution as Solution_2200
 from number_of_excellent_pairs_2354 import Solution as Solution_2354
 from node_with_highest_edge_score_2374 import Solution as Solution_2374
+from maximum_matching_of_players_with_trainers_2410 import Solution as Solution_2410
 from take_k_of_each_character_from_left_and_right_2516 import Solution as Solution_2516
 from points_that_intersect_with_cars_2848 import Solution as Solution_2848
 from minimum_deletions_to_make_string_k_special_3085 import Solution as Solution_3085
@@ -122,8 +128,8 @@ from reschedule_meetings_for_maximum_free_time_ii_3440 import Solution as Soluti
 
 @dataclass
 class LeetcodeTestCase:
-    input: any
-    output: any
+    input: Any
+    output: Any
 
 
 class Leetcode_testcases(unittest.TestCase):
@@ -252,7 +258,7 @@ class Leetcode_testcases(unittest.TestCase):
         ]
         sln = Solution_23()
         for tc in testcases:
-            lists = [buildListNode_23(input) for input in tc.input]
+            lists: List = [buildListNode_23(input) for input in tc.input]
             output = sln.mergeKLists(lists)
             if tc.output:
                 self.assertIsNotNone(output)
@@ -764,6 +770,20 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.longestConsecutive(tc.input)
             self.assertEqual(tc.output, output)
 
+    def test_case_144(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input=[1,None,2,None,None,3], output=[1,2,3]),
+            LeetcodeTestCase(input=[1,2,3,4,5,None,8,None,None,6,7,None,None,9], output=[1,2,4,5,6,7,3,8,9]),
+            LeetcodeTestCase(input=[], output=[]),
+            LeetcodeTestCase(input=[1], output=[1]),
+        ]
+        sln = Solution_144()
+        for tc in testcases:
+            root = build_tree_from_preorder_list(tc.input)
+            output = sln.preorderTraversal(root)
+            self.assertEqual(tc.output, output)
+
+
     def test_case_148(self):
         testcases = [
             LeetcodeTestCase(
@@ -784,7 +804,8 @@ class Leetcode_testcases(unittest.TestCase):
             input = buildListNode_148(tc.input)
             output = sln.sortList(input)
             self.assertIsNotNone(output)
-            self.assertLess(output.val, output.next.val)
+            if output is not None and output.next is not None:
+                self.assertLess(output.val, output.next.val)
 
     def test_case_150(self):
         testcases = [
@@ -1531,6 +1552,17 @@ class Leetcode_testcases(unittest.TestCase):
         sln = Solution_2374()
         for tc in testcases:
             output = sln.edgeScore(tc.input)
+            self.assertEqual(tc.output, output)
+
+    def test_case_2410(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"players": [4, 7, 9], "trainers": [8, 2, 5, 8]}, output=2),
+            LeetcodeTestCase(input={"players": [1,1,1], "trainers": [10]}, output=1),
+            LeetcodeTestCase(input={"players": [1, 2, 3], "trainers": [1, 2, 3]}, output=3),
+        ]
+        sln = Solution_2410()
+        for tc in testcases:
+            output = sln.matchPlayersAndTrainers(tc.input["players"], tc.input["trainers"])
             self.assertEqual(tc.output, output)
 
     def test_case_2516(self):

@@ -2,14 +2,10 @@
 from collections import defaultdict
 from typing import Optional
 
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+from _models import ListNode
 
 
-def buildListNode_148(nums: list[int]) -> ListNode:
+def buildListNode_148(nums: list[int]) -> Optional[ListNode]:
     if nums is None or len(nums) == 0:
         return None
     else:
@@ -43,7 +39,8 @@ class Solution:
         
         if len(keys) == 0:
             return None
-        curr.next = None
+        if curr is not None:
+            curr.next = None
         return store[keys[0]][0]
 
         # 方案二：超时
