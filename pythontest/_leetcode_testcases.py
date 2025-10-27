@@ -84,6 +84,7 @@ from minimum_number_of_arrows_to_burst_balloons_452 import Solution as Solution_
 from subarray_sum_equals_k_560 import Solution as Solution_560
 from longest_harmonious_subsequence_594 import Solution as Solution_594
 from daily_temperatures_739 import Solution as Solution_739
+from open_the_lock_752 import Solution as Solution_752
 from partition_labels_763 import Solution as Solution_763
 from super_egg_drop_877 import Solution as Solution_877
 from smallest_range_i_908 import Solution as Solution_908
@@ -124,6 +125,12 @@ from maximum_height_of_a_triangle_3200 import Solution as Solution_3200
 from find_the_k_th_character_in_string_game_i_3304 import Solution as Solution_3304
 from find_the_k_th_character_in_string_game_ii_3307 import Solution as Solution_3307
 from reschedule_meetings_for_maximum_free_time_ii_3440 import Solution as Solution_3440
+
+
+
+from max_common_substr_hj75 import Solution as Solution_hj75
+from max_bits_hj86 import Solution as Solution_hj86
+
 
 
 @dataclass
@@ -1310,6 +1317,17 @@ class Leetcode_testcases(unittest.TestCase):
             output = sln.dailyTemperatures(tc.input)
             self.assertAlmostEqual(tc.output, output)
 
+    def test_case_752(self):
+        testcases: List[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"deadends":["0201","0101","0102","1212","2002"], "target":"0202"}, output=6),
+            LeetcodeTestCase(input={"deadends":["8888"], "target":"0009"}, output=1),
+            LeetcodeTestCase(input={"deadends":["8887","8889","8878","8898","8788","8988","7888","9888"], "target":"8888"}, output=-1),
+        ]
+        sln = Solution_752()
+        for tc in testcases:
+            output = sln.openLock(tc.input["deadends"], tc.input["target"])
+            self.assertEqual(tc.output, output)
+
     def test_case_763(self):
         testcases: list[LeetcodeTestCase] = [
             LeetcodeTestCase(input="ababcbacadefegdehijhklij", output=[9, 7, 8]),
@@ -1848,6 +1866,28 @@ class Leetcode_testcases(unittest.TestCase):
                 tc.input["startTime"],
                 tc.input["endTime"],
             )
+            self.assertEqual(tc.output, output)
+
+    def test_case_hj75(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input={"s":"awaabb", "t":"aawbb"}, output=2),
+            LeetcodeTestCase(input={"s":"asdfas", "t":"werasdfaswer"}, output=6),
+            LeetcodeTestCase(input={"s":"asdfghjk", "t":"zxcvbnm"}, output=0),
+        ]
+        sln = Solution_hj75()
+        for tc in testcases:
+            output = sln.max_common_substr(tc.input["s"], tc.input["t"])
+            self.assertEqual(tc.output, output)
+
+    def test_case_hj86(self):
+        testcases: list[LeetcodeTestCase] = [
+            LeetcodeTestCase(input=200, output=2),
+            LeetcodeTestCase(input=1023, output=10),
+            LeetcodeTestCase(input=77, output=2),
+        ]
+        sln = Solution_hj86()
+        for tc in testcases:
+            output = sln.max_bits(tc.input)
             self.assertEqual(tc.output, output)
 
 
