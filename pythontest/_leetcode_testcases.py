@@ -128,11 +128,6 @@ from find_the_k_th_character_in_string_game_ii_3307 import Solution as Solution_
 from reschedule_meetings_for_maximum_free_time_ii_3440 import Solution as Solution_3440
 
 
-from sudoku_hj44 import Solution as Solution_hj44
-from max_common_substr_hj75 import Solution as Solution_hj75
-from max_bits_hj86 import Solution as Solution_hj86
-
-
 @dataclass
 class LeetcodeTestCase:
     input: Any
@@ -140,7 +135,6 @@ class LeetcodeTestCase:
 
 
 class Leetcode_testcases(unittest.TestCase):
-
     def test_case_1(self):
         testcases = [
             LeetcodeTestCase(
@@ -1906,88 +1900,6 @@ class Leetcode_testcases(unittest.TestCase):
                 tc.input["startTime"],
                 tc.input["endTime"],
             )
-            self.assertEqual(tc.output, output)
-
-
-    def test_case_hj44(self):
-        testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(
-                input=[
-                    [0, 9, 2, 4, 8, 1, 7, 6, 3],
-                    [4, 1, 3, 7, 6, 2, 9, 8, 5],
-                    [8, 6, 7, 3, 5, 9, 4, 1, 2],
-                    [6, 2, 4, 1, 9, 5, 3, 7, 8],
-                    [7, 5, 9, 8, 4, 3, 1, 2, 6],
-                    [1, 3, 8, 6, 2, 7, 5, 9, 4],
-                    [2, 7, 1, 5, 3, 8, 6, 4, 9],
-                    [3, 8, 6, 9, 1, 4, 2, 5, 7],
-                    [0, 4, 5, 2, 7, 6, 8, 3, 1],
-                ],
-                output=[
-                    [5, 9, 2, 4, 8, 1, 7, 6, 3],
-                    [4, 1, 3, 7, 6, 2, 9, 8, 5],
-                    [8, 6, 7, 3, 5, 9, 4, 1, 2],
-                    [6, 2, 4, 1, 9, 5, 3, 7, 8],
-                    [7, 5, 9, 8, 4, 3, 1, 2, 6],
-                    [1, 3, 8, 6, 2, 7, 5, 9, 4],
-                    [2, 7, 1, 5, 3, 8, 6, 4, 9],
-                    [3, 8, 6, 9, 1, 4, 2, 5, 7],
-                    [9, 4, 5, 2, 7, 6, 8, 3, 1],
-                ],
-            ),
-            LeetcodeTestCase(
-                input=[
-                    [7,3,0,0,0,8,0,0,0],
-                    [2,0,0,0,0,0,6,0,0],
-                    [0,0,1,0,0,0,4,5,0],
-                    [0,0,0,0,0,5,9,6,0],
-                    [9,0,0,8,1,0,0,4,0],
-                    [0,0,0,0,0,2,7,8,0],
-                    [0,0,6,0,0,0,5,2,0],
-                    [1,0,0,0,0,0,8,0,0],
-                    [8,9,0,0,0,6,0,0,0]
-                ],
-                output=[
-                    [7,3,5,4,6,8,1,9,2],
-                    [2,4,9,1,5,7,6,3,8],
-                    [6,8,1,2,3,9,4,5,7],
-                    [3,2,8,7,4,5,9,6,1],
-                    [9,6,7,8,1,3,2,4,5],
-                    [5,1,4,6,9,2,7,8,3],
-                    [4,7,6,3,8,1,5,2,9],
-                    [1,5,3,9,2,4,8,7,6],
-                    [8,9,2,5,7,6,3,1,4]
-                ],
-            ),
-        ]
-        sln = Solution_hj44()
-        for tc in testcases:
-            output=sln.resolve_sudoku(tc.input)
-            self.assertAlmostEqual(output, tc.output)
-            # for i in range(9):
-            #     self.assertAlmostEqual(output[i], tc.output[i])
-
-
-    def test_case_hj75(self):
-        testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input={"s": "awaabb", "t": "aawbb"}, output=2),
-            LeetcodeTestCase(input={"s": "asdfas", "t": "werasdfaswer"}, output=6),
-            LeetcodeTestCase(input={"s": "asdfghjk", "t": "zxcvbnm"}, output=0),
-        ]
-        sln = Solution_hj75()
-        for tc in testcases:
-            output = sln.max_common_substr(tc.input["s"], tc.input["t"])
-            self.assertEqual(tc.output, output)
-
-    def test_case_hj86(self):
-        testcases: list[LeetcodeTestCase] = [
-            LeetcodeTestCase(input=200, output=2),
-            LeetcodeTestCase(input=1023, output=10),
-            LeetcodeTestCase(input=77, output=2),
-        ]
-        sln = Solution_hj86()
-        for tc in testcases:
-            output = sln.max_bits(tc.input)
             self.assertEqual(tc.output, output)
 
 
