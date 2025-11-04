@@ -1,7 +1,6 @@
 # import dependencies
 from dataclasses import dataclass
-import sys
-from typing import Any, Literal
+from typing import Any
 import unittest
 
 # import local modules
@@ -12,6 +11,8 @@ from max_common_substr_hj75 import max_common_substr
 from max_seeds import max_seeds
 from max_team_members import max_team_members
 from sudoku_hj44 import resolve_sudoku
+from guess_number import guess_number
+from alphabet_snake import snake_move
 
 
 @dataclass
@@ -213,6 +214,88 @@ class NowcoderTestCases(unittest.TestCase):
             result = max_team_members(T, teams)
             self.assertAlmostEqual(tc.expected, result)
 
+    def test_case_guess_number(self):
+        testcases: list[NowcoderTestCase] = [
+            NowcoderTestCase(
+                args=[
+                    "6",
+                    "4815 1A1B",
+                    "5716 0A1B",
+                    "7842 0A1B",
+                    "4901 0A0B",
+                    "8585 3A0B",
+                    "8555 2A1B",
+                ],
+                expected='3585',
+            ),
+            NowcoderTestCase(args=["2", "4815 0A0B", "2999 3A0B"], expected="NA"),
+        ]
+        for tc in testcases:
+            N = int(tc.args[0])
+            numbers: list[list[str]] = []
+            for i in range(1, N + 1):
+                items = tc.args[i].split()
+                numbers.append(items)
+            result = guess_number(N, numbers)
+            self.assertEqual(tc.expected, result)
+
+    def test_case_snake_move(self):
+        testcases: list[NowcoderTestCase] = [
+            NowcoderTestCase(
+                args=[
+                    "5",
+                    "S N A K E",
+                    "5 5",
+                    "S N A B D",
+                    "E K F F E",
+                    "C B D A L",
+                    "E K E F K",
+                    "S A R T A",
+                ],
+                expected=["0 0", "1 0", "1 4", "1 3", "0 3"],
+            ),
+            NowcoderTestCase(
+                args=[
+                    "4",
+                    "B E A R",
+                    "5 5",
+                    "S N A B D",
+                    "E K F F E",
+                    "C B D A L",
+                    "E K E F K",
+                    "S A R T A",
+                ],
+                expected=["-1 -1"],
+            ),
+            NowcoderTestCase(
+                args=[
+                    "4",
+                    "A B C D",
+                    "4 4",
+                    "D A D X",
+                    "C B C X",
+                    "D X D X",
+                    "X X X X",
+                ],
+                expected=["1 0", "1 1", "0 1", "0 0"],
+            ),
+        ]
+        for tc in testcases:
+            steps = int(tc.args[0])
+            alphabet = tc.args[1].split()
+            [row, col] = [int(item) for item in tc.args[2].split()]
+            matrix = [item.split() for item in tc.args[3:]]
+            result = snake_move(steps, alphabet, row, col, matrix)
+            # self.assertAlmostEqual(tc.expected, result)
+            # x,y 反了…
+            for i in range(len(result)):
+                x, y = result[i]
+                self.assertEqual(
+                    tc.expected[i],
+                    f"{y} {x}",
+                    msg=f"Failed test case with args: {tc.args}",
+                )
+
 
 if __name__ == "__main__":
-    unittest.main()
+    _ = unittest.main()
